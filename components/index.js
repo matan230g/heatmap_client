@@ -1,5 +1,5 @@
 //Primary index.js file
-require('dotenv').config()
+const dotenv= require('dotenv').config()
 const api_host = process.env.API_HOST;
 
 
