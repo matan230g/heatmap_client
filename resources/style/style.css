@@ -1,0 +1,187 @@
+body{
+    padding:50px;
+    justify-content: center;
+    height:120vh;
+    font-family: sans-serif;
+    
+}
+
+.header{
+    background: url('../assets/dna-3539309_960_720.jpg') no-repeat center center/cover;
+}
+
+
+.headline{
+    font-size: 35px;
+}
+
+
+.table-box-connect-1to2{
+    width:500px;
+    overflow-y:auto;
+    height: 200px;
+    border:0.5px solid black;
+    border-radius: 5px;
+    margin-left: 10%;
+}
+
+.del{
+    background:rgba(153, 42, 42, 0.719);
+    color:white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.column{
+    padding:15px;
+    position: relative;
+    float: left;
+    width:30%;
+ }
+
+
+ .column3{
+    padding:15px;
+    position: relative;
+    float: left;
+    width:50%;
+ }
+
+
+ .column_connection_list{
+    padding:15px;
+    position: relative;
+    float: left;
+    width:100%;
+ }
+
+.column2{
+    padding:10px;
+    position: relative;
+    float: left;
+    justify-content: center;
+    width:50%;
+ }
+.code {
+    margin-top: 10px;
+    background-color: #E6E6E6;
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    white-space: pre;
+    /* font-weight: bold; */
+}
+
+.settings{
+    border: 1px solid #D4D4D4;
+    width:80%;
+    height: 30%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#buttonid{
+    margin-top:1rem;
+}
+
+
+
+.two_maps_container{
+    padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.inchlib{
+    float: right;
+}
+
+.inchlib2{
+    float: left;
+}
+
+.vl {
+    border-left: 1px solid black;
+    height: 500px;
+    width: 33%;
+  }
+
+  hr.style12 {
+    height: 6px;
+    color:black;
+	background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
+    border: 0;
+}
+
+.landing {
+    position:relative;
+    height: 65vh;
+    display: block;
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45vh;
+  }
+
+  .lead {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.x-large {
+    font-size: 3rem;
+  }
+
+.landing-inner {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ml{
+    margin-left: 10%;
+}
+
+.uniquiehm{
+  display: flex;
+  margin:auto;
+}
+
+.input-error{
+    border-color: #c92432;
+}
+
+.error-m{
+    color:red;
+}
+
+.table-container{
+    display:flex;
+    justify-content: space-around;
+}
+
+
+
+.away{
+    width:10%;
+    height: 20%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+ 
