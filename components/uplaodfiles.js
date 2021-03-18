@@ -4,6 +4,10 @@ const {drawmap2} = require('./drawmap')
 const {validate} =require('./forms')
 const {existingValidation} =require('./forms')
 const {cleanConnectionTables} = require('./drawmap')
+const {api_host} = require("./index")
+
+
+
 
   document.getElementById('myDefForm').addEventListener('submit', function(e) {
   var errorM = document.getElementById("error-message")
@@ -120,7 +124,7 @@ function uploadOneHeatMap(){
 
   formData.append("files", JSON.stringify(properties));
 
-    axios.post('http://127.0.0.1:8000/actions/uploadone', formData, {
+    axios.post(api_host+"actions/uploadone", formData, {
       headers: {
         'content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"
@@ -191,7 +195,7 @@ function upload2HeatMaps(){
 
   formData.append("files", JSON.stringify(properties));
 
-  axios.post('http://127.0.0.1:8000/actions/upload', formData, {
+  axios.post(api_host+"actions/upload", formData, {
     headers: {
       'content-Type': 'multipart/form-data',
       "Access-Control-Allow-Origin": "*"

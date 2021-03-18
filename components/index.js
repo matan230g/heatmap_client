@@ -1,4 +1,8 @@
 //Primary index.js file
+require('dotenv').config()
+const api_host = process.env.API_HOST;
+
+
 
 $(document).ready(() =>{
     //CheckBox listener
@@ -21,4 +25,5 @@ $(document).ready(() =>{
 
    document.getElementById("spinner").style.display="none";
 })
-  
+
+export{api_host};

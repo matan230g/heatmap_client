@@ -4,6 +4,7 @@ const { Parser } = require('json2csv');
 let count_matrix_file =""
 let design_matrix_file=""
 let volcano_plot_data=""
+const api_host = process.env.API_HOST;
 
 
 // document.getElementById('deseq-button').addEventListener('click',(e) =>{
@@ -27,7 +28,7 @@ function upload_data(elements){
     for (let file in elements){
         formData.append('files', document.getElementById(elements[file]).files[0]);
     }
-    axios.post('http://127.0.0.1:8000/deseq/upload_data', formData, {
+    axios.post(api_host+"deseq/upload_data", formData, {
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
@@ -57,7 +58,7 @@ function run_deseq_analysis(){
     formData.append("count_matrix_id",count_matrix_id);
     formData.append("design_matrix",design_matrix);
     formData.append("design_matrix_id",design_matrix_id);
-    axios.post('http://127.0.0.1:8000/deseq/run_deseq', formData, {
+    axios.post(api_host+"deseq/run_deseq", formData, {
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
@@ -103,7 +104,7 @@ function deseq_volcano_plot(){
     formData.append("y_th",y_threshold);
     formData.append("y_operation",y_operation);
 
-    axios.post('http://127.0.0.1:8000/deseq/volcano_plot_deseq', formData, {
+    axios.post(api_host+"/deseq/volcano_plot_deseq", formData, {
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
