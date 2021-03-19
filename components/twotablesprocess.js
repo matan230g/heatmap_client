@@ -1,6 +1,5 @@
 
 const axios = require('axios')
-const {api_host} = require("./index")
 
 var command;
 var values=[]
@@ -83,7 +82,7 @@ function extractData(table,cluster){
         console.log(cluster)
         console.log(endpoint)
 
-        axios.post(api_host+"actions/"+endpoint, {
+        axios.post('http://127.0.0.1:8000/actions/'+endpoint, {
             data: values,
             type: command.toLowerCase(),
             cluster: cluster.toLowerCase()

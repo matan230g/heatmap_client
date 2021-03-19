@@ -1,7 +1,5 @@
 const axios = require('axios')
 const {drawmapAfterManipulate} = require('./drawmap')
-const {api_host} = require("./index")
-console.log(api_host)
 
 var wichTableWorkOn;
 var clusterManipluate;
@@ -66,7 +64,7 @@ function sendToServer(properties){
     else
         map="inchlib1"
 
-    axios.post(api_host+"actions/"+properties['action'], properties, {
+    axios.post('http://127.0.0.1:8000/actions/'+properties['action'], properties, {
       headers: {
         'content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",

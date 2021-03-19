@@ -43,6 +43,9 @@
                 </button>
                 <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
             </div>
+            <div id="ml3" class="ml">
+                <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-success" data-target="#deseqModal">Deseq</button>
+            </div>   
         </div>
         <div class="column2">
             <p id ="headline2" class="headline" style="margin-left:5rem;">Second data Heatmap</p>
@@ -69,6 +72,7 @@
 
 
     <div   id="two_maps" style="justify-content: space-around; display: flex; " >
+
         <div>
             <div  id='inchlib1' ></div>
             <button style="display: none" id="downoad_map1">Download Map</button>
@@ -77,6 +81,7 @@
              <div  id='inchlib2' ></div>
              <button style="display: none"  id="downoad_map2">Download Map</button>
         </div>
+        <div id='plot'></div>
     </div>
 
 
@@ -495,7 +500,7 @@ mir2,gen3
     </div>
   </div>
 
-
+ <!-- DSEQ-Modal -->
 
 <div class="modal fade" id="deseqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -508,101 +513,152 @@ mir2,gen3
         </div>
         <div class="modal-body">
             <div class="deseq">
-                <div class="vertical_menu">
-                            <a href="#upload-data" class="active">Upload data</a>          
-                            <a href="#deseq_analysis">Deseq analysis</a>
-                            <a href="#deseq_volcano_plot">Volcano plot</a>
-                </div>
-                <div class="Deseq_analysis">
-                    <h3 id="upload-data">Upload data </h3>
-                    <p id="deseq_instructions">
-                        To perform deseq analysis, you must first upload the relevent files for the server.<br>
-                        1. count matrix - csv file contains the quantity for each sample and gene.<br>
-                        2. design matrix - csv file contains the conditions for each sample.<br>
-                        you can view sample files under the data format tab.<br>
-                    </p>
-                    <div id ="data_format">
-                        <h4>Data format</h4>
-                        <div id='count_matrix_example'>
-                            <p>
-                            <b>Count matrix :</b> <br>
-                            You can select any name for the id column, but you will need to pass the name as a parameter 
-                            in the next phases.<br> In the example the id column is - id.
-                            </p>
-                            <img src="./resources/count_matrix_example.JPG">
-                        </div>
-                        <div id='design_matrix_example'>
-                            <p>
-                            <b>Design matrix :</b> <br> 
-                            You can select any name for the id column, but you will need to pass the name as a parameter 
-                            in the next phases.<br> In the example the id column is - sample_id.
-                            </p>
-                            <img src="./resources/design_matrix_example.JPG">
-                        </div>
-                        <div id="deseq_upload_data">
-                            <form id ="files_data_deseq" >
-                                <label>Load count matrix data</label><br>
-                                <input type="file" class="form-control" id="count_matrix_data" style="width:60%" /><br>
-                                <label>Load design matrix data</label><br>
-                                <input type="file" class="form-control" id="design_matrix_data" style="width:60%" /><br>
-                                <input type="submit" value="Upload data">
-                            </form>
-                        </div>    
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a id="href-instructions" class="nav-link">Instructions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="href-parameters" class="nav-link">Parameters</a>
+                        </li>
+                      </ul>
                     </div>
-                </div>
-                <div id="deseq_analysis">
-                    <h4>Deseq Analysis</h4>
-                    <form id="deseq_form">
-                        <label for="count_matrix">Count matrix file name:</label><br>
-                        <input type="text" id="count_matrix" name="count_matrix" placeholder="count_matrix_example.csv" required><br>
-                        <label for="count_matrix_id">Count_matrix column ID:</label><br>
-                        <input type="text" id="count_matrix_id" name="count_matrix_id" placeholder="count_matrix_id" required><br>
-                        <label for="design_matrix">Design matrix file name:</label><br>
-                        <input type="text" id="design_matrix" name="design_matrix"  placeholder="design_matrix_example.csv" required><br>
-                        <label for="design_matrix_id">Design matrix column ID:</label><br>
-                        <input type="text" id="design_matrix_id" name="design_matrix_id" placeholder="design_matrix_id" required><br>
-                        <input type="submit" value="Run Deseq analysis">
-                        <input type="reset" value="Reset">
-                    </form>
-                </div>
-
-                <div id="deseq_volcano_plot">
-                    <h4>Deseq Volcano plot</h4>
-                    <p id="vp_instructions">
-                        To create an interactive volcano plot it is necessary to run a deseq analysis first or<br>
-                        upload a suitable file first.<br>
-                        If you performed deseq analysis first, the result are stored under the name deseq_result.csv,<br>
-                        the file contains the following columns - id, baseMean, log2FoldChange,	lfcSE, stat, pvalue, padj.<br>
-                        params:<br>
-                            x/y operation - What operation to take on the data in the appropriate column.<br>
-                            x/y threshold - A positive number greater than zero.<br>
+                </nav>
+                <div  id="deseq_instructions" class="Deseq_analysis">
+                    <p>
+                        <br>
+                        To perform Deseq analysis, you must first upload the relevent files for the server.<br>
+                        1. Count matrix - csv file contains the quantity for each sample and gene.<br>
+                        2. Design matrix - csv file contains the conditions for each sample.<br>
+                        For Example:.<br>
+                        <br>
+                        <span style="font-weight:bold;">Count matrix :</span> <br>
+                        You can choose any name you want for the id column, in example below, we choose the name "id".
+                        The parameter for Deseq analysis, will be the id name from id column e.g "gene_1".
+                        <img src="./resources/count_matrix_example.JPG"><br>
+                        <br>
+                        <span style="font-weight:bold;">Design Matrix:</span> <br>
+                        You can choose any name you want for the id column, in example below, we choose the name "sample_id".
+                        The parameter for Deseq analysis, will be the id name from id column e.g "sample_1".
+                        <img src="./resources/design_matrix_example.JPG">
                     </p>
-                    <form id="volcano_form">
-                        <label for="data_file">Data file:</label><br>
-                        <input type="text" id="data_file" name="data_file" value="deseq_result.csv" required><br>
-                        <label for="x_column">x column :</label><br>
-                        <input type="text" id="x_column" name="x_column"  placeholder="x_column" required><br>
-                        <label for="x_operation">x operation</label>
-                        <select id="x_operation" name="x_operation" >
-                            <option value="none">None</option>
-                            <option value="log">Log</option>
-                        </select><br>
-                        <label for="x_threshold">x threshold:</label><br>
-                        <input type="text" id="x_threshold" name="x_threshold" placeholder="0.05" required><br>
-                        <label for="y_column">y column :</label><br>
-                        <input type="text" id="y_column" name="y_column"  placeholder="y_column" required><br>
-                        <label for="y_operation">y operation</label><br>
-                        <select id="y_operation" name="y_operation">
-                            <option value="none">None</option>
-                            <option value="log">Log</option>
-                        </select><br>
-                        <label for="y_threshold">y threshold:</label><br>
-                        <input type="text" id="y_threshold" name="y_threshold" placeholder="0.05"><br>
-                        <input type="submit" value="create volcano plot">
-                        <input type="reset" value="Reset">
-                    </form>
                 </div>
-                <div id='plot'></div>
+                <div  id="deseq_parameters" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-10 ">   
+                            <form id="dseqForm" style="margin-top: 2rem;"> 
+                                <h3>Upload Files</h3>
+                                <br>
+                                <div class="form-group row">
+                                    <br>
+                                    <div class="col-sm-6">
+                                        <label>Load Count Matrix Data</label>
+                                        <input type="file" id="count_matrix_input" class="form-control" style="width:60%" />
+                                    </div>
+                                    <div id="er" class="col-sm-6">
+                                        <label>Load Design Matrix Data</label>
+                                        <input type="file" id="design_matrix_input" class="form-control" style="width:60%" />
+                                    </div>
+                                </div>
+                                <input id="dseq_files" type="submit" class="btn btn-info" value="Upload data">
+                            </form>
+                            <hr class="my-4">  
+                            <form id="dseqAnalysForm" style="margin-top: 2rem;"> 
+                                <h3>Run Analysis</h3>
+                                <div class="form-group row">
+                                    <br>
+                                    <div class="col-sm-6">
+                                            <label>Count Matrix Column Id</label>
+                                            <select class="form-control" id="count-matrix-select" style="width:80%">
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Design Matrix Column Id</label>
+                                            <select class="form-control" id="design-matrix-select" style="width:80%">
+                                            </select>
+                                    </div>
+                                </div>
+                                <input id="dseq_analysys" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
+                                <button id="dseq_analysys-download" type="submit" class="btn btn-success" hidden>Download Analysis</button>
+                            </form>
+                            <hr class="my-4">    
+                            <form id="dseqPlotForm" style="margin-top: 2rem;">
+                                <h3>Plot Deseq</h3>
+                                <br> 
+                                <div class="form-group row">
+                                    <br>
+                                    <div class="form-group row">
+                                        <div id="dseq-input-add" class="col-sm-6">
+                                            <label id="use">Use existing analysis file for plot</label>
+                                            <input id="dseq-user-file" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6" id="user-analysis-input" hidden>
+                                            <label>Load Analysis Result</label>
+                                            <input type="file" class="form-control" id="dseq-anlysis-input" style= "width:60%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <label>X Column</label>
+                                            <select class="form-control" id="x-column-select" style="width:80%">
+                                                <option>id</option>
+                                                <option>baseMean</option>
+                                                <option>log2FoldChange</option>
+                                                <option>lfcSE</option>
+                                                <option>stat</option>
+                                                <option>pvalue</option>
+                                                <option>padj</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Column</label>
+                                        <select class="form-control" id="y-column-select" style="width:80%">
+                                            <option>id</option>
+                                            <option>baseMean</option>
+                                            <option>log2FoldChange</option>
+                                            <option>lfcSE</option>
+                                            <option>stat</option>
+                                            <option>pvalue</option>
+                                            <option>padj</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>X Column Operation</label>
+                                            <select class="form-control" id="x-operation-select" style="width:80%">
+                                                <option>None</option>
+                                                <option>Log</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Column Operation</label>
+                                        <select class="form-control" id="y-operation-select" style="width:80%">
+                                            <option>None</option>
+                                            <option>Log</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>X Treshold</label>
+                                        <input type="number" class="form-control" id="x-treshold" style="width: 60%;" min="0" step="0.01">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Treshold</label>
+                                        <input type="number" class="form-control" id="y-treshold" style="width: 60%;" min="0" step="0.01">
+                                    </div>
+                                </div>
+                                <button id="deseq_plot" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
+                            </form>
+                        </div>
+                     </div>
+                </div>
             </div>	
         </div>
         <div class="modal-footer">
@@ -612,15 +668,7 @@ mir2,gen3
     </div>
   </div>
 
-  <div>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <label style="font-weight:bold">For Deseq option: </label>
-            <br><br>
-        </div>
-    </div>
-        <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-primary" data-target="#deseqModal">Deseq</button>    
-    </div> 
+
 
 </div>
     </body>
@@ -633,8 +681,8 @@ mir2,gen3
     <script type="text/javascript" src="./components/twotablesprocess.js"></script>
     <script type="text/javascript" src="./components/datamaniuplation.js"></script>
     <script type="text/javascript" src="./components/deseq.js"></script>
+    <script type="text/javascript" src="./components/dseq-modal.js"></script>
  </html>    
 
 
- 
  

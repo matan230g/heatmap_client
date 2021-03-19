@@ -80,6 +80,9 @@ export function drawmap2(json,target){
     
         let ml1 = document.getElementById("ml1");
         ml1.style.display="block";
+
+        let ml3 = document.getElementById("ml3");
+        ml3.style.display="block";
     
         let h1 = document.getElementById("headline1");
         h1.style.display="block";
@@ -116,6 +119,9 @@ export function drawmap2(json,target){
     
         let ml1 = document.getElementById("ml1");
         ml1.style.display="none";
+
+        let ml3 = document.getElementById("ml3");
+        ml3.style.display="none";
     
         let h1 = document.getElementById("headline1");
         h1.style.display="none";
