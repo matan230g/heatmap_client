@@ -15,6 +15,9 @@ body{
     font-size: 35px;
 }
 
+.headline-right{
+    float: right;
+}
 
 .table-box-connect-1to2{
     width:500px;
@@ -22,8 +25,9 @@ body{
     height: 200px;
     border:0.5px solid black;
     border-radius: 5px;
-    margin-left: 10%;
 }
+
+
 
 .del{
     background:rgba(153, 42, 42, 0.719);

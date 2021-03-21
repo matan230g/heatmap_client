@@ -23,6 +23,7 @@
     "bootstrap": "^4.5.3",
     "d3-request": "^1.0.6",
     "dotenv": "^8.2.0",
+    "file-saver": "^2.0.5",
     "json2csv": "^5.0.6",
     "plotly.js-dist": "^1.58.4",
     "regenerator-runtime": "^0.13.7",

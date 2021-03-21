@@ -67,7 +67,6 @@ function upload2HeatMapsExists(){
  let reader2 = new FileReader();
  let map1 = document.getElementById('map1').files[0]
 
-
  let map2 = document.getElementById('map2').files[0]
 
  reader1.readAsText(map1)
@@ -127,8 +126,14 @@ function uploadOneHeatMap(){
       }
       }).then((response) => {
         cleanConnectionTables();
-        localStorage.setItem("map",response.data)
+        localStorage.setItem("map1",response.data)
+        if(localStorage.getItem("map2")){
+          localStorage.removeItem("map2")
+        }
         drawmap(response.data,"inchlib")
+        $('#one_maps_show').attr('hidden',false)
+        $('#two_maps_show').attr('hidden',true)
+        $('#buttons').attr('hidden',false)
     }, (error) => {
       document.getElementById("spinner").style.display="none";
           let errormessage = error.response.data['detail']
@@ -203,7 +208,9 @@ function upload2HeatMaps(){
       drawmap(response.data.first,"inchlib1");
       localStorage.setItem("map2",response.data.second)
       drawmap2(response.data.second,"inchlib2");
-
+      $('#one_maps_show').attr('hidden',true)
+      $('#two_maps_show').attr('hidden',false)
+      $('#buttons').attr('hidden',false)
       var first_second_connections= response.data.first_second_connections;
       localStorage.setItem('first_second_connections',JSON.stringify(first_second_connections))
 

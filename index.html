@@ -23,72 +23,82 @@
         </div>
         
     </div>
-    <div class="table-container">
-        <div class="column2">
-            <p id ="headline1" style="margin-left:2rem;" class="headline">First data Heatmap</p>
-            <div id="table-box-connect-1to2" class="table-box-connect-1to2">
-                <table class="table table-sm" id="table-connect-1to2">
-                    <thead>
-                      <tr class="table-info">
-                        <th>miRNA</th>
-                        <th>Gene Target</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                  </table>
-            </div>
-            <div id="ml1" class="ml">
-                <button id="preprocess1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Generate
+    <div id="buttons" hidden>
+        <div  class="d-flex justify-content-center">
+            <div id="buttons_showups" class="btn-group-vertical h-25" style="margin-top:4rem">
+                <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-success mb-3" data-target="#deseqModal">
+                    Deseq Analysis
                 </button>
-                <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
-            </div>
-            <div id="ml3" class="ml">
-                <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-success" data-target="#deseqModal">Deseq</button>
-            </div>   
-        </div>
-        <div class="column2">
-            <p id ="headline2" class="headline" style="margin-left:5rem;">Second data Heatmap</p>
-            <div id="table-box-connect-2to1" class="table-box-connect-1to2">
-                <table class="table table-sm" id="table-connect-2to1">
-                    <thead>
-                      <tr class="table-info">
-                        <th>Gene Target</th>
-                        <th>miRNA</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                  </table>
-            </div>
-            <div id="ml2" class="ml">
-                <button id="preprocess2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Generate
+                <button id="save-settings-button" class="btn btn-success mb-3">
+                    DOWNLOAD SETTINGS
                 </button>
-                <button id='clear-tb2' type="button" class="btn btn-primary">CLEAR</button>
             </div>
         </div>
     </div>
 
-
-
-    <div   id="two_maps" style="justify-content: space-around; display: flex; " >
-
-        <div>
-            <div  id='inchlib1' ></div>
-            <button style="display: none" id="downoad_map1">Download Map</button>
+    
+    <div id="two_maps_show">
+        <div class="d-flex justify-content-between" hidden>
+            <div>
+                <p id ="headline1" class="headline">First data Heatmap</p>
+                <div id="table-box-connect-1to2" class="table-box-connect-1to2">
+                    <table class="table table-sm" id="table-connect-1to2">
+                        <thead>
+                        <tr class="table-info">
+                            <th>miRNA</th>
+                            <th>Gene Target</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="ml1" class="d-flex align-items-start">
+                    <button id="preprocess1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Generate
+                    </button>
+                    <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
+                </div>
+                <div>
+                    <div  id='inchlib1' ></div>
+                </div>
+            </div>
+            <div>
         </div>
-        <div>
-             <div  id='inchlib2' ></div>
-             <button style="display: none"  id="downoad_map2">Download Map</button>
+            <div>
+                <div class="d-flex align-items-end flex-column">
+                    <p id ="headline2" class="headline">Second data Heatmap</p>
+                    <div id="table-box-connect-2to1" class="table-box-connect-1to2">
+                        <table class="table table-sm" id="table-connect-2to1">
+                            <thead>
+                            <tr class="table-info">
+                                <th>Gene Target</th>
+                                <th>miRNA</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div id="ml2" class="ml">
+                        <button id="preprocess2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Generate
+                        </button>
+                        <button id='clear-tb2' type="button" class="btn btn-primary">CLEAR</button>
+                    </div>
+              </div>
+                <div>
+                    <div  id='inchlib2' ></div>
+                </div>   
+            </div>
         </div>
+    </div>
+    <div id="one_maps_show">
+        <div class="d-flex justify-content-around" hidden>
+            <div class="uniquiehm" id='inchlib'></div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
         <div id='plot'></div>
     </div>
-
-
-<div class="one_map_container">
-    <div class="uniquiehm" id='inchlib' ></div>
-    <button style="display: none;" id="downoad_map">Download Map</button>
-</div>
 
 
 
@@ -136,12 +146,8 @@ mir2,gen3
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6">
-                                <label>Load First Data</label>
-                                <input type="file" id="map1" class="form-control" style="width:60%" />
-                            </div>
-                            <div class="col-sm-6" id="map2-input" style="display:none">
-                                <label>Load Second Data</label>
-                                <input type="file" class="form-control" id="map2" style= "width:60%" />
+                                <label>Load Settings</label>
+                                <input type="file" id="saved-settings" class="form-control" style="width:60%" />
                             </div>
                         </div>
                     </div>
@@ -583,6 +589,7 @@ mir2,gen3
                                     </div>
                                 </div>
                                 <input id="dseq_analysys" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
+                                <div id="spinner-analysis" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
                                 <button id="dseq_analysys-download" type="submit" class="btn btn-success" hidden>Download Analysis</button>
                             </form>
                             <hr class="my-4">    
@@ -591,6 +598,7 @@ mir2,gen3
                                 <br> 
                                 <div class="form-group row">
                                     <br>
+                                    <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
                                     <div class="form-group row">
                                         <div id="dseq-input-add" class="col-sm-6">
                                             <label id="use">Use existing analysis file for plot</label>
@@ -606,7 +614,6 @@ mir2,gen3
                                     <div class="col-sm-6">
                                             <label>X Column</label>
                                             <select class="form-control" id="x-column-select" style="width:80%">
-                                                <option>id</option>
                                                 <option>baseMean</option>
                                                 <option>log2FoldChange</option>
                                                 <option>lfcSE</option>
@@ -618,7 +625,6 @@ mir2,gen3
                                     <div class="col-sm-6">
                                         <label>Y Column</label>
                                         <select class="form-control" id="y-column-select" style="width:80%">
-                                            <option>id</option>
                                             <option>baseMean</option>
                                             <option>log2FoldChange</option>
                                             <option>lfcSE</option>
@@ -678,10 +684,10 @@ mir2,gen3
     <script type="text/javascript" src="./components/drawmap.js"></script>
     <script type="text/javascript" src="./components/index.js"></script>
     <script type="text/javascript" src="./components/forms.js"></script>
-    <script type="text/javascript" src="./components/twotablesprocess.js"></script>
     <script type="text/javascript" src="./components/datamaniuplation.js"></script>
     <script type="text/javascript" src="./components/deseq.js"></script>
     <script type="text/javascript" src="./components/dseq-modal.js"></script>
+    <script type="text/javascript" src="./components/save-settings.js"></script>
  </html>    
 
 

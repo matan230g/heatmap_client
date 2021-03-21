@@ -192,16 +192,6 @@ $('#downoad_map').unbind('click').bind('click',(function(e){
    downloadObjectAsJson("map")
 }))
 
-$('#downoad_map1').unbind('click').bind('click',(function(e){
-    e.preventDefault();
-    downloadObjectAsJson("map1")
- }))
-
- $('#downoad_map2').unbind('click').bind('click',(function(e){
-    e.preventDefault();
-    downloadObjectAsJson("map2")
- }))
-
 
 function downloadObjectAsJson(wichmap){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(localStorage.getItem(wichmap));

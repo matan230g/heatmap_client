@@ -83,6 +83,10 @@ function addValues(valuesArray,selectElem){
 }
 
 function runAnalysis(e){
+
+  $('#green2').remove();
+  $('#spinner-analysis').attr('hidden',false);
+  $("#dseq_analysys-download").attr('hidden',true);
     let formData = new FormData();
     e.preventDefault();
     count_matrix_id = document.getElementById("count-matrix-select").value
@@ -97,6 +101,7 @@ function runAnalysis(e){
         }
         }).then((response) => {
           //csv_data = json2csv(response.data);
+          $('#spinner-analysis').attr('hidden',true);
           imagePath2 = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
           $('#dseqAnalysForm').append(`<img id="green2" src=${imagePath2} style="width:25px;"></img>`); 
           $("#dseq_analysys").prop("disabled",false)

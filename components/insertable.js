@@ -1,8 +1,15 @@
 
+
 var idSet = new Set()
 export function initTable(table){
     idSet= new Set();
-    table.innerHTML="";
+    table.innerHTML=`<thead>
+    <tr class="table-info">
+        <th>miRNA</th>
+        <th>Gene Target</th>
+        <th>Action</th>
+    </tr>
+    </thead>`;
 }
 
 export function addMir(id, idMap){

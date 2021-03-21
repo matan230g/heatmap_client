@@ -103,10 +103,13 @@ function changeSelectClusterManipulate(event){
 
 
 function getAllValues(tableName){
+    console.log(tableName)
     let array = []
-    $('#'+tableName+' tbody tr td:nth-child(1)').each( function(){
-        //add item to array
-        array.push( $(this).text() );       
-     });
+
+    table = document.getElementById(tableName);
+    for(var i=1; i<table.rows.length; i++){
+        array.push(table.rows[i].cells[0].textContent)
+    }      
+
      return array;
 }
