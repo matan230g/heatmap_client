@@ -1,4 +1,5 @@
-const axios = require('axios')
+const axios = require('axios');
+const { API_URL } = require('.');
 const {drawmapAfterManipulate} = require('./drawmap')
 
 var wichTableWorkOn;
@@ -64,7 +65,7 @@ function sendToServer(properties){
     else
         map="inchlib1"
 
-    axios.post('http://127.0.0.1:8000/actions/'+properties['action'], properties, {
+    axios.post(API_URL+'actions/'+properties['action'], properties, {
       headers: {
         'content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
