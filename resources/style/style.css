@@ -10,6 +10,9 @@ body{
     background: url('../assets/dna-3539309_960_720.jpg') no-repeat center center/cover;
 }
 
+.hidden{
+    display: none;
+}
 
 .headline{
     font-size: 35px;
