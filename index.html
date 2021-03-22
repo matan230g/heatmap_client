@@ -23,7 +23,7 @@
         </div>
         
     </div>
-    <div id="buttons" hidden>
+    <div id="buttons" class="hidden">
         <div  class="d-flex justify-content-center">
             <div id="buttons_showups" class="btn-group-vertical h-25" style="margin-top:4rem">
                 <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-success mb-3" data-target="#deseqModal">
@@ -37,8 +37,8 @@
     </div>
 
     
-    <div id="two_maps_show">
-        <div class="d-flex justify-content-between" hidden>
+    <div id="two_maps_show" class="hidden">
+        <div class="d-flex justify-content-between">
             <div>
                 <p id ="headline1" class="headline">First data Heatmap</p>
                 <div id="table-box-connect-1to2" class="table-box-connect-1to2">
@@ -91,8 +91,8 @@
             </div>
         </div>
     </div>
-    <div id="one_maps_show">
-        <div class="d-flex justify-content-around" hidden>
+    <div id="one_maps_show" class="hidden">
+        <div class="d-flex justify-content-around">
             <div class="uniquiehm" id='inchlib'></div>
         </div>
     </div>
@@ -106,19 +106,10 @@
     <div class="form-container">
   
             <p>Your tab-separated matrix file should be in one of the supported matrix formats (see examples below) and have .csv file extension.</p>
-            <div class="code">compoundid,1x10-5 mol.dm-3,1x10-4 mol.dm-3, 1x10-3 mol.dm-3
-13736,6.675,5.932,4.799
-13738,4.482,10.458,5.682
-13548,2.43,2.478,8.649
-7889,-1.0,2.244,60.017
-10701,-0.23,-2.189,13.679
+            <div class="code">id,sample1,sample2,sample3,sample4,sample5<br>13736,6.675,5.932,4.799<br>13738,4.482,10.458,5.682<br>13548,2.43,2.478,8.649<br>7889,-1.0,2.244,60.017<br>10701,-0.23,-2.189,13.679
             </div>
             <p>For connectioms file use this format:</p>
-            <div class="code">src,target
-mir1 ,gen1
-mir1,gen2
-mir2,gen1
-mir2,gen3
+            <div class="code">src,target<br>mir1 ,gen1<br>mir1,gen2<br>mir2,gen1<br>mir2,gen3
             </div>
             <p>Example file for you data you can find here:<a href="https://www.openscreen.cz/software/inchlib/static/source_data/example_data.csv" target="blank">Whole data file</a></p>
     </div>

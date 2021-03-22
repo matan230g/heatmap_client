@@ -132,9 +132,9 @@ function uploadOneHeatMap(){
           localStorage.removeItem("map2")
         }
         drawmap(response.data,"inchlib")
-        $('#one_maps_show').attr('hidden',false)
-        $('#two_maps_show').attr('hidden',true)
-        $('#buttons').attr('hidden',false)
+        $('#one_maps_show').show()
+        $('#two_maps_show').show()
+        $('#buttons').show()
     }, (error) => {
       document.getElementById("spinner").style.display="none";
           let errormessage = error.response.data['detail']
@@ -209,9 +209,9 @@ function upload2HeatMaps(){
       drawmap(response.data.first,"inchlib1");
       localStorage.setItem("map2",response.data.second)
       drawmap2(response.data.second,"inchlib2");
-      $('#one_maps_show').attr('hidden',true)
-      $('#two_maps_show').attr('hidden',false)
-      $('#buttons').attr('hidden',false)
+      $('#one_maps_show').hide()
+      $('#two_maps_show').show()
+      $('#buttons').show()
       var first_second_connections= response.data.first_second_connections;
       localStorage.setItem('first_second_connections',JSON.stringify(first_second_connections))
 
