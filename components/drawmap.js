@@ -7,6 +7,8 @@ const {initTable} = require('./insertable')
 
 document.getElementById('clear-tb1').addEventListener('click', cleanTableOne )
 document.getElementById('clear-tb2').addEventListener('click', cleanTableTwo )
+document.getElementById('restart1').addEventListener('click',() => resetMap("map1","inchlib1") )
+document.getElementById('restart2').addEventListener('click', () => resetMap("map2","inchlib2") )
 
 export function drawmap(json,target){
 var inchlib = new InCHlib({"target": target,
@@ -83,4 +85,12 @@ export function cleanConnectionTables(){
 function cleanTableTwo(){
     var table_2to1 = document.getElementById("table-connect-2to1");
     initTable(table_2to1)
+}
+
+function resetMap(map,target){
+    $("#spinner-"+map).show()
+    let mapJson = localStorage.getItem(map)
+    drawmap2(mapJson,target)
+    $("#spinner-"+map).hide()
+
 }
