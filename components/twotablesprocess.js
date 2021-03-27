@@ -54,6 +54,7 @@ function extractData(table,cluster){
             name: tableElemt.rows[j].cells[0].innerText
         };
         values.push(obj);
+        print(values)
     }
     
 

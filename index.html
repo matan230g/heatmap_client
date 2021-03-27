@@ -239,6 +239,7 @@
                                 <option>Weighted</option>
                             </select>
                     </div>
+
                 </div>
                 <div class="form-group row ">
                     <div class="col-sm-6">
@@ -272,7 +273,31 @@
                             </select> 
                     </div>
                 </div>
-
+  
+                <div class="form-group row ">
+                    <div class="col-sm-6">
+                        <label>Compress</label>
+                        <select class="form-control" id="choose-compress" style="width:60%">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row " id='compress-detailes'>
+                    <div class="col-sm-6"  > 
+                        <label>Compressed number</label>
+                        <br>
+                        <input   id="compressed-number" class="form-control" style="width:60%"  type="number" name="compressed_number"
+                        min="2" max="5000" value="100">
+                    </div>
+                    <div class="col-sm-6"  > 
+                        <label>Compressed value</label>
+                            <select id="compressed-value" class="form-control"  style="width:60%">
+                                <option>median</option>
+                                <option>mean</option>
+                            </select> 
+                    </div>
+                </div>
                 <!-- <hr class="my-4">     -->
                 <br>
 
@@ -338,7 +363,7 @@
                             </select>
                     </div>
                     <div class="col-sm-6" id='tgt-distance-column' style="display: none;">
-                        <label for="exampleFormControlSelect1">Choose Distance Type</label>
+                        <label for="exampleFormControlSelect1">Choose Column Distance Type</label>
                             <select class="form-control" id="distance-select-column2" style="width:60%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
@@ -350,6 +375,30 @@
                                 <option>Chebyshev</option>
                                 <option>Euclidean</option>
                                 <option>Sqeuclidean</option>
+                            </select> 
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-6">
+                        <label>Compress</label>
+                        <select class="form-control" id="choose-compress2" style="width:60%">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row " id='compress-detailes2'>
+                    <div class="col-sm-6"  > 
+                        <label>Compressed number</label>
+                        <br>
+                        <input   id="compressed-number2" class="form-control" style="width:60%"  type="number" name="compressed_number"
+                        min="2" max="5000" value="100">
+                    </div>
+                    <div class="col-sm-6"  > 
+                        <label>Compressed value</label>
+                            <select id="compressed-value2" class="form-control"  style="width:60%">
+                                <option>median</option>
+                                <option>mean</option>
                             </select> 
                     </div>
                 </div>
@@ -459,6 +508,28 @@
                                 </select> 
                         </div>
                     </div>
+                    <div class="form-group row">
+
+                    <div class="col">
+                        <br>
+                        <input  id="choose-compress-manipulate" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;">
+                        <label >Compress</label>
+
+                    <div  id='compress-detailes-manipulate' style="display: none;"  >
+                        <div class="col" > 
+                            <label>Compressed number</label>
+                            <br>
+                            <input   id="compressed-number-manipulate" class="form-control" style="width:40%"  type="number" 
+                            min="2" max="5000" value="100">
+                            <label>Compressed value</label>
+                                <select id="compressed-value-manipulate" class="form-control"  style="width:40%">
+                                    <option>median</option>
+                                    <option>mean</option>
+                                </select> 
+                        </div>
+                   
+                    </div>
+                </div>
                 </form>
             </div>
         </div>

@@ -31,6 +31,7 @@ function dataManipulate(){
 
     let properties = {}
     let checkIfBoth = document.getElementById('target-clust-select-manipul').value
+    let checkIfCompress = document.getElementById("choose-compress-manipulate").checked;
     let action = document.getElementById('action').value
     let linkage1 = document.getElementById('linkage-select-manipulate').value
     let distance1 = document.getElementById('distance-select2-manipulate').value
@@ -50,6 +51,16 @@ function dataManipulate(){
     else{
         properties['both1'] = 0;
     }
+
+    if(checkIfCompress){
+        properties['compress1'] = 1;
+        properties['compressed_number'] = document.getElementById('compressed-number-manipulate').value
+        properties['compressed_value'] = document.getElementById('compressed-value-manipulate').value
+    }
+    else{
+        properties['compress1'] = 0;
+    }
+
     properties['values'] = values
 
     sendToServer(properties)

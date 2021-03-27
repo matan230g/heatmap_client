@@ -112,10 +112,17 @@ function uploadOneHeatMap(){
   properties['raw_distance'] = document.getElementById('distance-select').value
   properties['raw_linkage'] = document.getElementById('linkage-select').value
   properties['both1']=0
+  properties['compress1']=0
+
   if(document.getElementById("miRNA-clust-select").value == "Both"){
     properties['both1']=1
     properties['column_distance'] = document.getElementById('distance-select-column').value
     properties['column_linkage'] = document.getElementById('linkage-select-column').value
+  }
+  if(document.getElementById("choose-compress").value == "Yes"){
+    properties['compress1']=1
+    properties['compressed_number'] = document.getElementById('compressed-number').value
+    properties['compressed_value'] = document.getElementById('compressed-value').value
   }
 
   formData.append("files", JSON.stringify(properties));
@@ -153,7 +160,7 @@ function upload2HeatMaps(){
   formData.append("files", document.getElementById('mirNA').files[0]);
  
   properties = propertiesFilePrepare('mirNA',"mirNA-metadata",'checkbox-meta-data1')
-
+  console.log('propertiessss:' , properties)
   if(properties['metadata'] == 1) 
     formData.append("files", document.getElementById('mirNA-metadata').files[0])
 
@@ -163,6 +170,7 @@ function upload2HeatMaps(){
   formData.append("files", document.getElementById('target').files[0]);
 
   propertiesSecond = propertiesFilePrepare('target','target-metadata','checkbox-meta-data2')
+  console.log('propertiesSecond:' , propertiesSecond)
 
   if(propertiesSecond['metadata'] == 1) 
     formData.append("files", document.getElementById('target-metadata').files[0])
@@ -179,20 +187,36 @@ function upload2HeatMaps(){
   properties['raw_distance'] = document.getElementById('distance-select').value
   properties['raw_linkage'] = document.getElementById('linkage-select').value
   properties['both1'] = 0
+  properties['compress1']=0
+
   if(document.getElementById("miRNA-clust-select").value == "Both"){
     properties['both1']=1
     properties['column_distance'] = document.getElementById('distance-select-column').value
     properties['column_linkage'] = document.getElementById('linkage-select-column').value
   }
 
+  if(document.getElementById("choose-compress").value == "Yes"){
+    properties['compress1']=1
+    properties['compressed_number'] = document.getElementById('compressed-number').value
+    properties['compressed_value'] = document.getElementById('compressed-value').value
+  }
+
   properties['raw_distance2'] = document.getElementById('distance-select').value
   properties['raw_linkage2'] = document.getElementById('linkage-select').value
   properties['both2'] = 0
+  properties['compress2']=0
+
   if(document.getElementById("target-clust-select").value == "Both"){
     properties['both2'] = 1
     properties['column_distance2'] = document.getElementById('distance-select-column2').value
     properties['column_linkage2'] = document.getElementById('linkage-select-column2').value
   }
+  if(document.getElementById("choose-compress2").value == "Yes"){
+    properties['compress2']=1
+    properties['compressed_number2'] = document.getElementById('compressed-number2').value
+    properties['compressed_value2'] = document.getElementById('compressed-value2').value
+  }
+  
 
 
   formData.append("files", JSON.stringify(properties));

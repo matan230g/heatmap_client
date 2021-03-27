@@ -2,10 +2,14 @@
 document.getElementById('checkbox-maps-choose').addEventListener('click', showHideMapsNum);
 document.getElementById('checkbox-meta-data1').addEventListener('click', showHideMetaData1);
 document.getElementById('checkbox-meta-data2').addEventListener('click', showHideMetaData2);
+document.getElementById('choose-compress-manipulate').addEventListener('click', chooseCompressManipulate);
 document.getElementById('checkbox-loading-files-choose').addEventListener('click', showHideForms);
 document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
+document.getElementById('choose-compress').addEventListener('change', changeCompress)
+document.getElementById('choose-compress2').addEventListener('change', changeCompress2)
+
 
 function showHideMetaData1(){
     const res = document.getElementById("checkbox-meta-data1").checked;
@@ -17,6 +21,19 @@ function showHideMetaData1(){
         settings.style.display="none";  
     }
 }
+
+
+function chooseCompressManipulate(){
+    const res = document.getElementById("choose-compress-manipulate").checked;
+    var settings = document.getElementById("compress-detailes-manipulate");
+    if(res){
+        settings.style.display="block"; 
+    }
+    else{
+        settings.style.display="none";  
+    }
+}
+
 
 
 function showHideMetaData2(){
@@ -163,6 +180,27 @@ function changeSelectClusterTarget(event){
     }
 
 
+}
+
+function changeCompress(event){
+
+    if(event.target.value === 'Yes'){
+        document.getElementById('compress-detailes').style.display='block';
+    }
+    else{
+        document.getElementById('compress-detailes').style.display='none';
+    }
+}
+
+
+function changeCompress2(event){
+
+    if(event.target.value === 'Yes'){
+        document.getElementById('compress-detailes2').style.display='block';
+    }
+    else{
+        document.getElementById('compress-detailes2').style.display='none';
+    }
 }
 
 function showHideForms(){
