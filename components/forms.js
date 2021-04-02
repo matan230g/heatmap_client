@@ -7,8 +7,8 @@ document.getElementById('checkbox-loading-files-choose').addEventListener('click
 document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
-document.getElementById('choose-compress').addEventListener('change', changeCompress)
-document.getElementById('choose-compress2').addEventListener('change', changeCompress2)
+document.getElementById('choose-compress').addEventListener('click', changeCompress)
+document.getElementById('choose-compress2').addEventListener('click', changeCompress2)
 
 
 function showHideMetaData1(){
@@ -183,23 +183,27 @@ function changeSelectClusterTarget(event){
 }
 
 function changeCompress(event){
-
-    if(event.target.value === 'Yes'){
-        document.getElementById('compress-detailes').style.display='block';
+    const res = document.getElementById("choose-compress").checked;
+    var settings = document.getElementById("compress-detailes");
+    if(res){
+        settings.style.display="block"; 
     }
     else{
-        document.getElementById('compress-detailes').style.display='none';
+        settings.style.display="none";  
     }
+    
 }
 
 
 function changeCompress2(event){
 
-    if(event.target.value === 'Yes'){
-        document.getElementById('compress-detailes2').style.display='block';
+    const res = document.getElementById("choose-compress2").checked;
+    var settings = document.getElementById("compress-detailes2");
+    if(res){
+        settings.style.display="block"; 
     }
     else{
-        document.getElementById('compress-detailes2').style.display='none';
+        settings.style.display="none";  
     }
 }
 

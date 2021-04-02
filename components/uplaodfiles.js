@@ -119,7 +119,7 @@ function uploadOneHeatMap(){
     properties['column_distance'] = document.getElementById('distance-select-column').value
     properties['column_linkage'] = document.getElementById('linkage-select-column').value
   }
-  if(document.getElementById("choose-compress").value == "Yes"){
+  if(document.getElementById("choose-compress").checked){
     properties['compress1']=1
     properties['compressed_number'] = document.getElementById('compressed-number').value
     properties['compressed_value'] = document.getElementById('compressed-value').value
@@ -196,7 +196,7 @@ function upload2HeatMaps(){
     properties['column_linkage'] = document.getElementById('linkage-select-column').value
   }
 
-  if(document.getElementById("choose-compress").value == "Yes"){
+  if( document.getElementById("choose-compress").checked){
     properties['compress1']=1
     properties['compressed_number'] = document.getElementById('compressed-number').value
     properties['compressed_value'] = document.getElementById('compressed-value').value
@@ -212,7 +212,7 @@ function upload2HeatMaps(){
     properties['column_distance2'] = document.getElementById('distance-select-column2').value
     properties['column_linkage2'] = document.getElementById('linkage-select-column2').value
   }
-  if(document.getElementById("choose-compress2").value == "Yes"){
+  if(document.getElementById("choose-compress2").checked){
     properties['compress2']=1
     properties['compressed_number2'] = document.getElementById('compressed-number2').value
     properties['compressed_value2'] = document.getElementById('compressed-value2').value
