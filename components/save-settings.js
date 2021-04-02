@@ -3,6 +3,7 @@ var FileSaver = require('file-saver');
 const {cleanConnectionTables} = require('./drawmap')
 const {drawmap} = require('./drawmap')
 const {drawmap2} = require('./drawmap')
+const {API_URL} = require('./index')
 
 document.getElementById('save-settings-button').addEventListener('click', saveSettings);
 document.getElementById('button_exists').addEventListener('click', uplaodSavedSettings);
@@ -19,7 +20,7 @@ function saveSettings(){
     }
 
     maps = {}
-    axios.post('http://127.0.0.1:8000/actions/save',maps, {
+    axios.post(API_URL+'actions/save',maps, {
         headers: {
             'content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
@@ -37,7 +38,7 @@ function uplaodSavedSettings(){
     let formData = new FormData();
     savedSettingsInput = document.getElementById('saved-settings')
     formData.append("file",savedSettingsInput.files[0])
-    axios.post('http://127.0.0.1:8000/actions/upload-saved', formData , {
+    axios.post(API_URL+'actions/upload-saved', formData , {
         headers: {
             'content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*"

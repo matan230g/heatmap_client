@@ -4,6 +4,7 @@ const {drawmap2} = require('./drawmap')
 const {validate} =require('./forms')
 const {existingValidation} =require('./forms')
 const {cleanConnectionTables} = require('./drawmap')
+const {API_URL} = require('./index')
 
   document.getElementById('myDefForm').addEventListener('submit', function(e) {
   var errorM = document.getElementById("error-message")
@@ -119,7 +120,7 @@ function uploadOneHeatMap(){
 
   formData.append("files", JSON.stringify(properties));
 
-    axios.post('http://127.0.0.1:8000/actions/uploadone', formData, {
+   axios.post(API_URL+'actions/uploadone', formData, {
       headers: {
         'content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"
@@ -197,7 +198,7 @@ function upload2HeatMaps(){
 
   formData.append("files", JSON.stringify(properties));
 
-  axios.post('http://127.0.0.1:8000/actions/upload', formData, {
+  axios.post(API_URL+'actions/upload', formData, {
     headers: {
       'content-Type': 'multipart/form-data',
       "Access-Control-Allow-Origin": "*"
@@ -230,16 +231,17 @@ function upload2HeatMaps(){
 
 
 function propertiesFilePrepare(id1,id2,id3){
+  let properties= {}
   if(document.getElementById(id1).files[0] && document.getElementById(id2).files[0] && document.getElementById(id3).checked){
     properties ={
       file1:'1',
-      metadata:'1',
+      metadata:'1'
     }
   }
 else{
-  properties ={
+  properties = {
       file1:'1',
-      metadata:'0',
+      metadata:'0'
   }
 }
 return properties

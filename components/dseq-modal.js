@@ -1,6 +1,7 @@
 const axios = require('axios')
 const plotly = require ("plotly.js-dist");
 const { Parser } = require('json2csv');
+const {API_URL} = require('./index')
 
 
 var hiddenInput=true;
@@ -46,7 +47,7 @@ function uploadDseqFiles(e){
         formData.append('files', document.getElementById("design_matrix_input").files[0]);
         console.log(formData)
 
-        axios.post('http://127.0.0.1:8000/deseq/upload_data', formData, {
+        axios.post(API_URL+'deseq/upload_data', formData, {
             headers: {
               'content-Type': 'multipart/form-data',
               "Access-Control-Allow-Origin": "*"
@@ -94,7 +95,7 @@ function runAnalysis(e){
 
     formData.append("count_matrix_id",count_matrix_id);
     formData.append("design_matrix_id",design_matrix_id);
-    axios.post('http://127.0.0.1:8000/deseq/run_deseq', formData, {
+    axios.post(API_URL+'deseq/run_deseq', formData, {
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
@@ -122,7 +123,7 @@ function runAnalysis(e){
 function download_deseq_result(e){
     e.preventDefault();
     console.log("download data");
-    axios.get('http://127.0.0.1:8000/deseq/get_deseq_result',{
+    axios.get(API_URL+'deseq/get_deseq_result',{
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
@@ -178,7 +179,7 @@ function plotDseq(e){
     formData.append("y_th",y_treshold);
     formData.append("y_operation",y_operation);
 
-    axios.post('http://127.0.0.1:8000/deseq/volcano_plot_deseq', formData, {
+    axios.post(API_URL+'deseq/volcano_plot_deseq', formData, {
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
