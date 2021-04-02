@@ -140,7 +140,7 @@ function uploadOneHeatMap(){
         }
         drawmap(response.data,"inchlib")
         $('#one_maps_show').show()
-        $('#two_maps_show').show()
+        $('#two_maps_show').hide()
         $('#buttons').show()
         $('html, body').animate({ scrollTop: 0 }, 'fast');
     }, (error) => {

@@ -26,9 +26,6 @@
     <div id="buttons" class="hidden">
         <div  class="d-flex justify-content-center">
             <div id="buttons_showups" class="btn-group-vertical h-25" style="margin-top:4rem">
-                <button id='deseq-button' type="button"  data-toggle="modal" class="btn btn-success mb-3" data-target="#deseqModal">
-                    Deseq Analysis
-                </button>
                 <button id="save-settings-button" class="btn btn-success mb-3">
                     DOWNLOAD SETTINGS
                 </button>
@@ -58,12 +55,16 @@
                     </button>
                     <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
                 </div>
+                <div id="bt1">
+                    <button id='deseq-button1' type="button" class="btn btn-success">DSEQ</button>
+                    <button id="restart1" type="button" class="btn btn-success">RESET DEFAULT</button>
+                    <div id="spinner-map1" class="spinner-border text-muted hidden"  style="margin-left:35px;"></div>
+                </div>
                 <div>
                     <div  id='inchlib1' ></div>
+                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div>  
                 </div>
             </div>
-            <div>
-        </div>
             <div>
                 <div class="d-flex align-items-end flex-column">
                     <p id ="headline2" class="headline">Second data Heatmap</p>
@@ -84,9 +85,14 @@
                         </button>
                         <button id='clear-tb2' type="button" class="btn btn-primary">CLEAR</button>
                     </div>
+                    <div id="bt2">
+                            <button id="deseq-button2" type="button" class="btn btn-success">DSEQ</button>
+                            <button id="restart2" type="button" class="btn btn-success">RESET DEFAULT</button>
+                    </div>
               </div>
                 <div>
                     <div  id='inchlib2' ></div>
+                    <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
                 </div>   
             </div>
         </div>
