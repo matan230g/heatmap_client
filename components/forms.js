@@ -3,7 +3,7 @@ document.getElementById('checkbox-maps-choose').addEventListener('click', showHi
 document.getElementById('checkbox-meta-data1').addEventListener('click', showHideMetaData1);
 document.getElementById('checkbox-meta-data2').addEventListener('click', showHideMetaData2);
 document.getElementById('checkbox-loading-files-choose').addEventListener('click', showHideForms);
-document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
+//document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
 
@@ -38,7 +38,6 @@ function showHideMapsNum(){
     var settingssecondheatmap = document.getElementById("secondheatmapssettings");
     var hr = document.getElementById("hr2");
     document.getElementById("checkbox-meta-data2").checked = false;
-    //var settings = document.getElementById("checkbox-option");
 
     if(res){
         settingssecondheatmap.style.display="none"

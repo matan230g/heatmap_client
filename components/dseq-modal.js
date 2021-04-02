@@ -5,9 +5,23 @@ const {API_URL} = require('./index')
 
 
 var hiddenInput=true;
+var heatMapNumber;
 
 document.getElementById('href-instructions').addEventListener('click', navgiateToInstructions);
 document.getElementById('href-parameters').addEventListener('click', navgiateToParameters);
+
+document.getElementById("deseq-button1").addEventListener('click',()=>{
+  heatMapNumber=1
+})
+
+document.getElementById("deseq-button2").addEventListener('click',()=>{
+  heatMapNumber=2
+})
+//For one heatmap
+document.getElementById("deseq-button").addEventListener('click',()=>{
+  heatMapNumber=3
+})
+
 
 document.getElementById("dseq-user-file").addEventListener('click', function(e){
     $("#user-analysis-input").attr('hidden',!hiddenInput);
@@ -42,11 +56,7 @@ function uploadDseqFiles(e){
 
         files =["count_matrix_data_input","design_matrix_input"]
         let formData = new FormData();
-
-        formData.append('files', document.getElementById("count_matrix_input").files[0]);
         formData.append('files', document.getElementById("design_matrix_input").files[0]);
-        console.log(formData)
-
         axios.post(API_URL+'deseq/upload_data', formData, {
             headers: {
               'content-Type': 'multipart/form-data',
@@ -56,12 +66,12 @@ function uploadDseqFiles(e){
                 imagePath = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
                 $('#dseqForm').append(`<img id="green" src=${imagePath} style="width:25px;"></img>`); 
                 
-                $("#count-matrix-select option").remove();
-                countMatrixDropDown = document.getElementById('count-matrix-select');
-                addValues(response.data.count_values,countMatrixDropDown)
-                $("#design-matrix-select option").remove();
-                designMatrixDropDown = document.getElementById('design-matrix-select');
-                addValues(response.data.design_values,designMatrixDropDown)
+                //$("#count-matrix-select option").remove();
+                //countMatrixDropDown = document.getElementById('count-matrix-select');
+                //addValues(response.data.count_values,countMatrixDropDown)
+                //$("#design-matrix-select option").remove();
+                //designMatrixDropDown = document.getElementById('design-matrix-select');
+               // addValues(response.data.design_values,designMatrixDropDown)
                 $( "#dseq_analysys" ).prop( "disabled", false );
           })
           .catch(error => {
@@ -90,10 +100,10 @@ function runAnalysis(e){
   $("#dseq_analysys-download").attr('hidden',true);
     let formData = new FormData();
     e.preventDefault();
-    count_matrix_id = document.getElementById("count-matrix-select").value
-    design_matrix_id = document.getElementById("design-matrix-select").value
-
-    formData.append("count_matrix_id",count_matrix_id);
+    //count_matrix_id = document.getElementById("count-matrix-select").value
+    //design_matrix_id = document.getElementById("design-matrix-select").value
+   // formData.append("count_matrix_id",count_matrix_id);
+    design_matrix_id = "id"
     formData.append("design_matrix_id",design_matrix_id);
     axios.post(API_URL+'deseq/run_deseq', formData, {
         headers: {
@@ -122,14 +132,12 @@ function runAnalysis(e){
 
 function download_deseq_result(e){
     e.preventDefault();
-    console.log("download data");
     axios.get(API_URL+'deseq/get_deseq_result',{
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
         }
         }).then((response) => {
-          console.log(response.data); 
           csv_data = json2csv(response.data);
           const csvBlob = new Blob([csv_data],{type: "text/csv"});
           const blobUrl = URL.createObjectURL(csvBlob);
@@ -185,7 +193,10 @@ function plotDseq(e){
           "Access-Control-Allow-Origin": "*"
         }
         }).then((response) => {
-          create_volcano_plot(response.data);
+          let id = heatMapNumber == 1 ? "plot1" : heatMapNumber == 2 ? "plot2" : "plot" 
+          let filter = heatMapNumber == 1 ? "#filter-map1" : heatMapNumber == 2 ? "#filter-map2" : "#filter-map" 
+          create_volcano_plot(response.data,id);
+          $(filter).show()
           $('#deseqModal').modal('toggle');
       })
       .catch(error => {
@@ -207,7 +218,7 @@ function initAnaylsysValues(){
     $("#design-matrix-select option").remove();
 }
 
-function create_volcano_plot(html){
+function create_volcano_plot(html,id){
   volcano_plot_data =html['data'];
   // var icon = 
   var config = {
@@ -216,8 +227,7 @@ function create_volcano_plot(html){
         name: 'download data',
         // icon: 'download_icon.png',
         click: function() {
-          console.log(volcano_plot_data);
         }}
     ]};
-  plotly.newPlot('plot',html['data'],html['layout'],config)
+  plotly.newPlot(id,html['data'],html['layout'],config)
 }

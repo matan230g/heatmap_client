@@ -7,12 +7,10 @@ var values=[]
 
 document.getElementById('preprocess1').addEventListener('click',function(){
     command='1'
-    console.log(command)
 },false);
 
 document.getElementById('preprocess2').addEventListener('click',function(){
     command='2'
-    console.log(command)
 },false);
 
 
@@ -47,7 +45,6 @@ document.getElementById('generate_preprocess').addEventListener('click',function
 function extractData(table,cluster){
     var tableElemt = document.getElementById(table)
 
-    console.log(tableElemt.rows.length)
     //insert all values to json obj
     for(var j=1;j<tableElemt.rows.length;j++){
         var obj = { 
@@ -78,11 +75,6 @@ function extractData(table,cluster){
 
 
     function callServer(endpoint,cluster){
-        console.log(values)
-        console.log(command)
-        console.log(cluster)
-        console.log(endpoint)
-
         axios.post(API_URL+'actions/'+endpoint, {
             data: values,
             type: command.toLowerCase(),
@@ -92,7 +84,6 @@ function extractData(table,cluster){
                 values=[]
           }, (error) => {
             values=[]
-            console.log(error);
           });
           values=[]
     }

@@ -12,6 +12,7 @@
     </head>
 
     <body>
+        <img src = "./resources/assets/home-logo-icon-2.jpg" style="width:50px; cursor:pointer; margin-bottom: 4px;" onclick="window.location.reload()">
     <div class="header">
         <div className="landing">
             <div class="dark-overlay">
@@ -56,13 +57,15 @@
                     <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
                 </div>
                 <div id="bt1">
-                    <button id='deseq-button1' type="button" class="btn btn-success">DSEQ</button>
+                    <button id='deseq-button1' type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal"> DSEQ</button>
                     <button id="restart1" type="button" class="btn btn-success">RESET DEFAULT</button>
                     <div id="spinner-map1" class="spinner-border text-muted hidden"  style="margin-left:35px;"></div>
                 </div>
-                <div>
+                <div  class="d-flex flex-column justify-content-center">
                     <div  id='inchlib1' ></div>
-                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div>  
+                    <div id='plot1'></div>
+                    <button id="filter-map1" type="button" class="btn btn-secondary hidden" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div> 
                 </div>
             </div>
             <div>
@@ -84,14 +87,18 @@
                             Generate
                         </button>
                         <button id='clear-tb2' type="button" class="btn btn-primary">CLEAR</button>
+                        
                     </div>
                     <div id="bt2">
-                            <button id="deseq-button2" type="button" class="btn btn-success">DSEQ</button>
+                            <button id="deseq-button2" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DSEQ</button>
                             <button id="restart2" type="button" class="btn btn-success">RESET DEFAULT</button>
+                        
                     </div>
               </div>
-                <div>
+                <div class="d-flex flex-column justify-content-center">
                     <div  id='inchlib2' ></div>
+                    <div id='plot2'></div>
+                    <button id="filter-map2" type="button" class="btn btn-secondary hidden" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
                     <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
                 </div>   
             </div>
@@ -99,15 +106,12 @@
     </div>
     <div id="one_maps_show" class="hidden">
         <div class="d-flex justify-content-around">
+            <button id="deseq-button" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DSEQ</button>
             <div class="uniquiehm" id='inchlib'></div>
+            <div id='plot'></div>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div id='plot'></div>
-    </div>
-
-
-
+    
 
     <div class="form-container">
   
@@ -137,10 +141,6 @@
             <div class="col-md-10 ">   
                 <form id="loadSettings"> 
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <input id="map2-loading" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;">
-                            <label id="use">Load 2 Maps</label>
-                        </div>
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label>Load Settings</label>
@@ -221,9 +221,9 @@
                     </div>
                 </div>
                 <div class="form-group row ">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6"> 
                         <label>Choose Linkage Type</label>
-                            <select class="form-control" id="linkage-select" style="width:60%">
+                            <select class="form-control" id="linkage-select" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -235,7 +235,7 @@
                     </div>
                     <div class="col-sm-6" id='mir-linkage-column' style="display: none;">
                         <label>Choose Column Linkage Type</label>
-                            <select class="form-control" id="linkage-select-column" style="width:60%">
+                            <select class="form-control" id="linkage-select-column" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -249,7 +249,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6">
                         <label for="exampleFormControlSelect1">Choose Distance Type</label>
-                            <select class="form-control" id="distance-select" style="width:60%">
+                            <select class="form-control" id="distance-select" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -264,7 +264,7 @@
                     </div>
                     <div class="col-sm-6" id='mir-distance-column' style="display: none;"> 
                         <label for="exampleFormControlSelect1">Choose Column Distance Type</label>
-                            <select class="form-control" id="distance-select-column" style="width:60%">
+                            <select class="form-control" id="distance-select-column" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -304,7 +304,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6" id='tgt-linkage-column' style="display: none;">
                         <label>Choose Linkage Type</label>
-                            <select class="form-control" id="linkage-select2" style="width:60%">
+                            <select class="form-control" id="linkage-select2" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -316,7 +316,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label>Choose Column Linkage Type</label>
-                            <select class="form-control" id="linkage-select-column2" style="width:60%">
+                            <select class="form-control" id="linkage-select-column2" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -330,7 +330,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6">
                         <label for="exampleFormControlSelect1"> Distance Type</label>
-                            <select class="form-control" id="distance-select2" style="width:60%">
+                            <select class="form-control" id="distance-select2" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -345,7 +345,7 @@
                     </div>
                     <div class="col-sm-6" id='tgt-distance-column' style="display: none;">
                         <label for="exampleFormControlSelect1">Choose Distance Type</label>
-                            <select class="form-control" id="distance-select-column2" style="width:60%">
+                            <select class="form-control" id="distance-select-column2" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -363,7 +363,10 @@
                 <div class="col-sm-6">
                     <p id="error-message">&nbsp;</p>
                     <input id="buttonid" type="submit" class="btn btn-primary"></input>
-                    <div id="spinner" class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                    <div id="spinner">
+                    <div class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                    <p>The Preprocess may take few seconds...</p>
+                    </div>
                 </div>
             </form>
         </div>
@@ -558,10 +561,6 @@
                                 <br>
                                 <div class="form-group row">
                                     <br>
-                                    <div class="col-sm-6">
-                                        <label>Load Count Matrix Data</label>
-                                        <input type="file" id="count_matrix_input" class="form-control" style="width:60%" />
-                                    </div>
                                     <div id="er" class="col-sm-6">
                                         <label>Load Design Matrix Data</label>
                                         <input type="file" id="design_matrix_input" class="form-control" style="width:60%" />
@@ -572,19 +571,7 @@
                             <hr class="my-4">  
                             <form id="dseqAnalysForm" style="margin-top: 2rem;"> 
                                 <h3>Run Analysis</h3>
-                                <div class="form-group row">
                                     <br>
-                                    <div class="col-sm-6">
-                                            <label>Count Matrix Column Id</label>
-                                            <select class="form-control" id="count-matrix-select" style="width:80%">
-                                            </select>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Design Matrix Column Id</label>
-                                            <select class="form-control" id="design-matrix-select" style="width:80%">
-                                            </select>
-                                    </div>
-                                </div>
                                 <input id="dseq_analysys" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
                                 <div id="spinner-analysis" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
                                 <button id="dseq_analysys-download" type="submit" class="btn btn-success" hidden>Download Analysis</button>
