@@ -68,9 +68,9 @@ function dataManipulate(){
     }
 
     properties['values'] = values
-
+    // console.log('propertiessss: ',properties)
+    // console.log('wichTableWorkOn: ',wichTableWorkOn)
     sendToServer(properties)
-
 }
 
 

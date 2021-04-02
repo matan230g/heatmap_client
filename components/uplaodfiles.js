@@ -161,7 +161,7 @@ function upload2HeatMaps(){
   formData.append("files", document.getElementById('mirNA').files[0]);
  
   properties = propertiesFilePrepare('mirNA',"mirNA-metadata",'checkbox-meta-data1')
-  console.log('propertiessss:' , properties)
+  // console.log('propertiessss:' , properties)
   if(properties['metadata'] == 1) 
     formData.append("files", document.getElementById('mirNA-metadata').files[0])
 
@@ -171,7 +171,7 @@ function upload2HeatMaps(){
   formData.append("files", document.getElementById('target').files[0]);
 
   propertiesSecond = propertiesFilePrepare('target','target-metadata','checkbox-meta-data2')
-  console.log('propertiesSecond:' , propertiesSecond)
+  // console.log('propertiesSecond:' , propertiesSecond)
 
   if(propertiesSecond['metadata'] == 1) 
     formData.append("files", document.getElementById('target-metadata').files[0])

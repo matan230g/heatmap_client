@@ -2,7 +2,7 @@
 document.getElementById('checkbox-maps-choose').addEventListener('click', showHideMapsNum);
 document.getElementById('checkbox-meta-data1').addEventListener('click', showHideMetaData1);
 document.getElementById('checkbox-meta-data2').addEventListener('click', showHideMetaData2);
-document.getElementById('choose-compress-manipulate1').addEventListener('click', chooseCompressManipulate1);
+document.getElementById('choose-compress-manipulate').addEventListener('click', chooseCompressManipulate);
 document.getElementById('checkbox-loading-files-choose').addEventListener('click', showHideForms);
 document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
@@ -23,9 +23,9 @@ function showHideMetaData1(){
 }
 
 
-function chooseCompressManipulate1(){
-    const res = document.getElementById("checkbox-meta-data1").checked;
-    var settings = document.getElementById("checkbox-mirNA-metadata-option");
+function chooseCompressManipulate(){
+    const res = document.getElementById("choose-compress-manipulate").checked;
+    var settings = document.getElementById("compress-detailes-manipulate");
     if(res){
         settings.style.display="block"; 
     }
