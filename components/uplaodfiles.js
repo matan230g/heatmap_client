@@ -142,6 +142,7 @@ function uploadOneHeatMap(){
         $('#one_maps_show').show()
         $('#two_maps_show').show()
         $('#buttons').show()
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
     }, (error) => {
       document.getElementById("spinner").style.display="none";
           let errormessage = error.response.data['detail']
@@ -241,7 +242,7 @@ function upload2HeatMaps(){
 
       var second_first_connections= response.data.second_first_connections;
       localStorage.setItem('second_first_connections',JSON.stringify(second_first_connections))
-
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
       }, (error) => {
           document.getElementById("spinner").style.display="none";
           let errormessage = error.response.data['detail']

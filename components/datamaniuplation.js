@@ -18,13 +18,19 @@ document.getElementById('mainuplate-data').addEventListener('click',(e) =>{
     $(function () {
         $('#exampleModal').modal('toggle');
      });
+     if(wichTableWorkOn=="second_first"){
+         $("#inchlib1").hide()
+         $("spinner-map1").show()
+     }
+     else{
+        $("#inchlib2").hide()
+        $("spinner-map2").show()
+     }
     dataManipulate();
 },false)
 
 
 document.getElementById('target-clust-select-manipul').addEventListener('change',changeSelectClusterManipulate)
-
-
 
 
 function dataManipulate(){
@@ -83,15 +89,27 @@ function sendToServer(properties){
         "uuid":localStorage.getItem('uuid')
       }
       }).then((response) => {
+        if(map=="inchlib2"){
+            $("#inchlib2").show()
+            $("spinner-map2").show()
+        }
+        else{
+            $("#inchlib1").show()
+            $("spinner-map1").show()
+        }
         drawmapAfterManipulate(response.data,map)
     }, (error) => {
       errormessage = error.response.data['detail']
-      if(map="inchlib2"){
-        $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#ml1" );
+      if(map=="inchlib2"){
+        $("#inchlib2").show()
+        $("spinner-map2").show()
+        $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#bt1" );
         setTimeout(() => $("#action_error").remove(),3000)
       }
       else{
-        $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#ml2" );
+        $("#inchlib1").show()
+        $("spinner-map1").show()
+        $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#bt2" );
         setTimeout(() => $("#action_error").remove(),3000)
       }
     });
