@@ -17,19 +17,20 @@ document.getElementById("deseq-button1").addEventListener('click',()=>{
 document.getElementById("deseq-button2").addEventListener('click',()=>{
   heatMapNumber=2
 })
+
 //For one heatmap
 document.getElementById("deseq-button").addEventListener('click',()=>{
   heatMapNumber=3
 })
-
 
 document.getElementById("dseq-user-file").addEventListener('click', function(e){
     $("#user-analysis-input").attr('hidden',!hiddenInput);
     hiddenInput=!hiddenInput
 });
 
+
 document.getElementById('dseq_files').addEventListener('click', function(e) { 
-    uploadDseqFiles(e)},false);
+    uploadDeseqFiles(e)},false);
 
 document.getElementById('dseq_analysys').addEventListener('click',function(e) {
     runAnalysis(e)},false);
@@ -39,6 +40,40 @@ document.getElementById('dseq_analysys-download').addEventListener('click',funct
 
 document.getElementById('deseq_plot').addEventListener('click',function(e) {
     plotDseq(e)},false);
+
+// filtering Heatmaps 
+document.getElementById('filter-map1').addEventListener('click', function(e) { 
+  filter_heatmaps(e,'1')},false);
+
+document.getElementById('filter-map2').addEventListener('click', function(e) { 
+  filter_heatmaps(e,'2')},false);
+
+
+
+function filter_heatmaps(e,side){
+  e.preventDefault();
+
+  axios.get(API_URL+'deseq/filter_heatmap',{
+      params:{'side' :side} ,
+      headers: {
+        'content-Type': 'multipart/form-data',
+        "Access-Control-Allow-Origin": "*"
+      }
+      }).then((response) => {
+    })
+    .catch(error => {
+      var para = document.createElement("p");            
+          para.innerText = "*Some Error occured. Check your files";
+          para.style.color="red"
+          document.getElementById("dseqAnalysForm").appendChild(para);
+          setTimeout(() => {
+              para.remove();
+          },6000)
+    })
+}
+
+
+
     
 function navgiateToInstructions(){
     document.getElementById("deseq_instructions").style.display="block";
@@ -50,13 +85,13 @@ function navgiateToParameters(){
     document.getElementById("deseq_parameters").style.display="block";
 }
 
-function uploadDseqFiles(e){
+function uploadDeseqFiles(e){
         e.preventDefault();
         $('#green').remove();
-
-        files =["count_matrix_data_input","design_matrix_input"]
+        files =["design_matrix_input"]
         let formData = new FormData();
         formData.append('files', document.getElementById("design_matrix_input").files[0]);
+        formData.append("side",heatMapNumber);
         axios.post(API_URL+'deseq/upload_data', formData, {
             headers: {
               'content-Type': 'multipart/form-data',
@@ -65,13 +100,6 @@ function uploadDseqFiles(e){
             }).then((response) => {
                 imagePath = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
                 $('#dseqForm').append(`<img id="green" src=${imagePath} style="width:25px;"></img>`); 
-                
-                //$("#count-matrix-select option").remove();
-                //countMatrixDropDown = document.getElementById('count-matrix-select');
-                //addValues(response.data.count_values,countMatrixDropDown)
-                //$("#design-matrix-select option").remove();
-                //designMatrixDropDown = document.getElementById('design-matrix-select');
-               // addValues(response.data.design_values,designMatrixDropDown)
                 $( "#dseq_analysys" ).prop( "disabled", false );
           })
           .catch(error => {
@@ -100,11 +128,7 @@ function runAnalysis(e){
   $("#dseq_analysys-download").attr('hidden',true);
     let formData = new FormData();
     e.preventDefault();
-    //count_matrix_id = document.getElementById("count-matrix-select").value
-    //design_matrix_id = document.getElementById("design-matrix-select").value
-   // formData.append("count_matrix_id",count_matrix_id);
-    design_matrix_id = "id"
-    formData.append("design_matrix_id",design_matrix_id);
+    formData.append("side",heatMapNumber);
     axios.post(API_URL+'deseq/run_deseq', formData, {
         headers: {
           'content-Type': 'multipart/form-data',
@@ -120,8 +144,9 @@ function runAnalysis(e){
           $("#dseq_plot").prop( "disabled", false )
       })
       .catch(error => {
+        let error_message = error.response.data.message;
         var para = document.createElement("p");            
-            para.innerText = "*Some Error occured. Check your files";
+            para.innerText = error_message;
             para.style.color="red"
             document.getElementById("dseqAnalysForm").appendChild(para);
             setTimeout(() => {
@@ -132,7 +157,9 @@ function runAnalysis(e){
 
 function download_deseq_result(e){
     e.preventDefault();
+
     axios.get(API_URL+'deseq/get_deseq_result',{
+        params:{'side' :heatMapNumber} ,
         headers: {
           'content-Type': 'multipart/form-data',
           "Access-Control-Allow-Origin": "*"
@@ -143,7 +170,7 @@ function download_deseq_result(e){
           const blobUrl = URL.createObjectURL(csvBlob);
           const anchorElement = document.createElement("a");
           anchorElement.href = blobUrl;
-          anchorElement.download = "deseq_result.csv"
+          anchorElement.download = "deseq_result" + String(heatMapNumber)+".csv"
           anchorElement.click();
           setTimeout(() => {
             URL.revokeObjectURL(blobUrl);
@@ -186,6 +213,7 @@ function plotDseq(e){
     formData.append("y_column",y_column);
     formData.append("y_th",y_treshold);
     formData.append("y_operation",y_operation);
+    formData.append('side',heatMapNumber);
 
     axios.post(API_URL+'deseq/volcano_plot_deseq', formData, {
         headers: {
@@ -220,14 +248,5 @@ function initAnaylsysValues(){
 
 function create_volcano_plot(html,id){
   volcano_plot_data =html['data'];
-  // var icon = 
-  var config = {
-    modeBarButtonsToAdd: [
-      {
-        name: 'download data',
-        // icon: 'download_icon.png',
-        click: function() {
-        }}
-    ]};
-  plotly.newPlot(id,html['data'],html['layout'],config)
+  plotly.newPlot(id,html['data'],html['layout'])
 }
