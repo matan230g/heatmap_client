@@ -23,11 +23,6 @@ document.getElementById("deseq-button").addEventListener('click',()=>{
   heatMapNumber=3
 })
 
-document.getElementById("dseq-user-file").addEventListener('click', function(e){
-    $("#user-analysis-input").attr('hidden',!hiddenInput);
-    hiddenInput=!hiddenInput
-});
-
 
 document.getElementById('dseq_files').addEventListener('click', function(e) { 
     uploadDeseqFiles(e)},false);
@@ -144,6 +139,7 @@ function runAnalysis(e){
           $("#dseq_plot").prop( "disabled", false )
       })
       .catch(error => {
+        console.log(error.content)
         let error_message = error.response.data.message;
         var para = document.createElement("p");            
             para.innerText = error_message;

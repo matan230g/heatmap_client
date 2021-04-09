@@ -36,7 +36,6 @@ function showHideMapsNum(){
     var checkbox_target_md = document.getElementById("checkbox-target-metadata-option")
     var connections = document.getElementById("connections")
     var settingssecondheatmap = document.getElementById("secondheatmapssettings");
-    var hr = document.getElementById("hr2");
     document.getElementById("checkbox-meta-data2").checked = false;
 
     if(res){
@@ -44,7 +43,6 @@ function showHideMapsNum(){
         target_metadata.style.display="none"; 
         checkbox_target_md.style.display="none";
         connections.style.display="none";
-        hr.style.display="none";
     }
     else{
         settingssecondheatmap.style.display="block"
@@ -176,15 +174,6 @@ function showHideForms(){
     }
 }
 
-function showHideMap2Exist(){
-    let checkbox = document.getElementById("map2-loading").checked;
-    if(checkbox == true){
-        document.getElementById('map2-input').style.display="block";
-    }
-    else{
-        document.getElementById('map2-input').style.display="none";
-    }
-}
 
 $('#downoad_map').unbind('click').bind('click',(function(e){
    e.preventDefault();

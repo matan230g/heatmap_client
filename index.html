@@ -64,7 +64,7 @@
                 <div  class="d-flex flex-column justify-content-center">
                     <div  id='inchlib1' ></div>
                     <div id='plot1'></div>
-                    <button id="filter-map1" type="button" class="btn btn-secondary hidden" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                    <button id="filter-map1" type="button" class="btn btn-secondary hidden" style="width: 30%; margin:auto; margin-bottom:3rem;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
                     <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div> 
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div id="bt2">
                             <button id="deseq-button2" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
                             <button id="restart2" type="button" class="btn btn-success">RESET DEFAULT</button>
-                        
+                
                     </div>
               </div>
                 <div class="d-flex flex-column justify-content-center">
@@ -104,15 +104,22 @@
             </div>
         </div>
     </div>
-    <div id="one_maps_show" class="hidden">
-        <div class="d-flex justify-content-around">
-            <button id="deseq-button" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DSEQ</button>
-            <div class="uniquiehm" id='inchlib'></div>
+
+
+    
+    <div id="one_maps_show"  style="margin:auto" class="hidden">
+        <div class="d-flex justify-content-center" >
+            <div  id='inchlib' style="margin:auto"></div>
+        </div>
+        <div class="d-flex justify-content-center">
             <div id='plot'></div>
+        </div>
+        <div  class="d-flex justify-content-center">
+            <button id="deseq-button" type="button" class="btn btn-success w-20" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
         </div>
     </div>
     
-
+<div id="home-page">
     <div class="form-container">
   
             <p>Your tab-separated matrix file should be in one of the supported matrix formats (see examples below) and have .csv file extension.</p>
@@ -365,7 +372,7 @@
                     <input id="buttonid" type="submit" class="btn btn-primary"></input>
                     <div id="spinner">
                     <div class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
-                    <p>The Preprocess may take few seconds...</p>
+                    <p>The Preprocess may take a few seconds...</p>
                     </div>
                 </div>
             </form>
@@ -378,7 +385,7 @@
 
 <hr class="my-4">    
 
-
+</div>
 
   <!-- Modal -->
   
@@ -534,7 +541,7 @@
                       </ul>
                     </div>
                 </nav>
-                <div  id="deseq_instructions" class="Deseq_analysis">
+                <div id="deseq_instructions" class="Deseq_analysis">
                     <p>
                         <br>
                         To perform Deseq analysis, you must first upload the relevent files for the server.<br>
@@ -583,12 +590,6 @@
                                 <div class="form-group row">
                                     <br>
                                     <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
-                                    <div class="form-group row">
-                                        <div id="dseq-input-add" class="col-sm-6">
-                                            <label id="use">Use existing analysis file for plot</label>
-                                            <input id="dseq-user-file" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked >
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6" id="user-analysis-input" hidden>
                                             <label>Load Analysis Result</label>
@@ -656,9 +657,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-
 
 </div>
     </body>
