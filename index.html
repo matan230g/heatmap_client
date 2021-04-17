@@ -544,19 +544,19 @@
                 <div id="deseq_instructions" class="Deseq_analysis">
                     <p>
                         <br>
-                        To perform Deseq analysis, you must first upload the relevent files for the server.<br>
-                        1. Count matrix - csv file contains the quantity for each sample and gene.<br>
-                        2. Design matrix - csv file contains the conditions for each sample.<br>
-                        For Example:.<br>
-                        <br>
+                        To perform Deseq analysis, you must upload relevent conditions file.<br>
+                        The file must be csv type that contains a column named 'id' that contains identifiers for each row.<br>
+                        The Deseq analysis will be performed on data uploaded to the relevant heat map.<br>
+                        The data must contains a column named 'id' that contains identifiers for each row.<br>
+                        Important for Deseq analysis the data must contains count values (Integers),<br>
+                        The the number of columns in the count data file (not include id column),<br>
+                         must be the same as the number of rows in the conditions file (not include header).<br>
+                        For Example:<br>
                         <span style="font-weight:bold;">Count matrix :</span> <br>
-                        You can choose any name you want for the id column, in example below, we choose the name "id".
-                        The parameter for Deseq analysis, will be the id name from id column e.g "gene_1".
                         <img src="./resources/count_matrix_example.JPG"><br>
                         <br>
                         <span style="font-weight:bold;">Design Matrix:</span> <br>
-                        You can choose any name you want for the id column, in example below, we choose the name "sample_id".
-                        The parameter for Deseq analysis, will be the id name from id column e.g "sample_1".
+                        <br>
                         <img src="./resources/design_matrix_example.JPG">
                     </p>
                 </div>
@@ -569,7 +569,7 @@
                                 <div class="form-group row">
                                     <br>
                                     <div id="er" class="col-sm-6">
-                                        <label>Load Design Matrix Data</label>
+                                        <label>Load Condition Matrix File</label>
                                         <input type="file" id="design_matrix_input" class="form-control" style="width:60%" />
                                     </div>
                                 </div>

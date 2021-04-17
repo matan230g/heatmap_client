@@ -2,7 +2,7 @@ const axios = require('axios')
 const plotly = require ("plotly.js-dist");
 const { Parser } = require('json2csv');
 const {API_URL} = require('./index')
-
+const {drawmap} = require('./drawmap')
 
 var hiddenInput=true;
 var heatMapNumber;
@@ -47,7 +47,6 @@ document.getElementById('filter-map2').addEventListener('click', function(e) {
 
 function filter_heatmaps(e,side){
   e.preventDefault();
-
   axios.get(API_URL+'deseq/filter_heatmap',{
       params:{'side' :side} ,
       headers: {
@@ -55,10 +54,16 @@ function filter_heatmaps(e,side){
         "Access-Control-Allow-Origin": "*"
       }
       }).then((response) => {
+        json_data = JSON.parse(response.data['plot']);
+        heatmap_data = response.data.heatmap;
+        inchlibTarget = side===3 ? "inchlib" : 'inchlib'+side; 
+        drawmap(heatmap_data,inchlibTarget)
+        create_volcano_plot(json_data,side);
     })
     .catch(error => {
+      let error_message = error.response.data.message;
       var para = document.createElement("p");            
-          para.innerText = "*Some Error occured. Check your files";
+          para.innerText = error_message;
           para.style.color="red"
           document.getElementById("dseqAnalysForm").appendChild(para);
           setTimeout(() => {
@@ -80,12 +85,30 @@ function navgiateToParameters(){
     document.getElementById("deseq_parameters").style.display="block";
 }
 
+function check_file_type(file_name){
+  if (file_name.endsWith('.csv')){
+    return true
+  }
+  return false
+}
+
 function uploadDeseqFiles(e){
         e.preventDefault();
         $('#green').remove();
         files =["design_matrix_input"]
         let formData = new FormData();
-        formData.append('files', document.getElementById("design_matrix_input").files[0]);
+        let design_file= document.getElementById("design_matrix_input").files[0]
+        if (check_file_type(design_file.name) == false){
+          var para = document.createElement("p");          
+            para.innerText = "file type must be csv";
+            para.style.color="red"
+            document.getElementById("dseqForm").appendChild(para);
+            setTimeout(() => {
+                para.remove();
+            },6000)
+            return
+        }
+        formData.append('files',design_file);
         formData.append("side",heatMapNumber);
         axios.post(API_URL+'deseq/upload_data', formData, {
             headers: {
@@ -98,9 +121,10 @@ function uploadDeseqFiles(e){
                 $( "#dseq_analysys" ).prop( "disabled", false );
           })
           .catch(error => {
-            initAnaylsysValues()  
+            initAnaylsysValues()
+            let error_message = error.response.data.message;  
             var para = document.createElement("p");          
-            para.innerText = "*Some Error occured. Check your files";
+            para.innerText = error_message;
             para.style.color="red"
             document.getElementById("dseqForm").appendChild(para);
             setTimeout(() => {
@@ -130,7 +154,6 @@ function runAnalysis(e){
           "Access-Control-Allow-Origin": "*"
         }
         }).then((response) => {
-          //csv_data = json2csv(response.data);
           $('#spinner-analysis').attr('hidden',true);
           imagePath2 = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
           $('#dseqAnalysForm').append(`<img id="green2" src=${imagePath2} style="width:25px;"></img>`); 
@@ -139,7 +162,7 @@ function runAnalysis(e){
           $("#dseq_plot").prop( "disabled", false )
       })
       .catch(error => {
-        console.log(error.content)
+        $('#spinner-analysis').attr('hidden',true);
         let error_message = error.response.data.message;
         var para = document.createElement("p");            
             para.innerText = error_message;
@@ -173,8 +196,9 @@ function download_deseq_result(e){
           },600)
       })
       .catch(error => {
+        let error_message = error.response.data.message;
         var para = document.createElement("p");            
-            para.innerText = "*Some Error occured. Check your files";
+            para.innerText = error_message;
             para.style.color="red"
             document.getElementById("dseqAnalysForm").appendChild(para);
             setTimeout(() => {
@@ -217,15 +241,13 @@ function plotDseq(e){
           "Access-Control-Allow-Origin": "*"
         }
         }).then((response) => {
-          let id = heatMapNumber == 1 ? "plot1" : heatMapNumber == 2 ? "plot2" : "plot" 
-          let filter = heatMapNumber == 1 ? "#filter-map1" : heatMapNumber == 2 ? "#filter-map2" : "#filter-map" 
-          create_volcano_plot(response.data,id);
-          $(filter).show()
+          create_volcano_plot(response.data,heatMapNumber);
           $('#deseqModal').modal('toggle');
       })
       .catch(error => {
+        let error_message = error.response.data.message;
         var para = document.createElement("p");            
-        para.innerText = "*Some Error occured. Check your input params";
+        para.innerText = error_message;
         para.style.color="red"
         document.getElementById("dseqPlotForm").appendChild(para);
         setTimeout(() => {
@@ -242,7 +264,11 @@ function initAnaylsysValues(){
     $("#design-matrix-select option").remove();
 }
 
-function create_volcano_plot(html,id){
-  volcano_plot_data =html['data'];
-  plotly.newPlot(id,html['data'],html['layout'])
+function create_volcano_plot(plot,side){
+  let id = side == 1 ? "plot1" : side == 2 ? "plot2" : "plot" 
+  let filter = side == 1 ? "#filter-map1" : side == 2 ? "#filter-map2" : "#filter-map"
+  let vp_data = plot['data'];
+  let vp_layout = plot['layout'];
+  plotly.newPlot(id,vp_data,vp_layout)
+  $(filter).show()
 }
