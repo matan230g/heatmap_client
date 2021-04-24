@@ -79,6 +79,8 @@ function extractData(table,cluster){
 
 
     function callServer(endpoint,cluster){
+        console.log("in calllllServer");
+
         console.log(values)
         console.log(command)
         console.log(cluster)
@@ -91,9 +93,11 @@ function extractData(table,cluster){
         } 
             ).then((response) => {
                 values=[]
+                console.log('values',values);
           }, (error) => {
             values=[]
             console.log(error);
+            alert('can not...');
           });
           values=[]
     }
