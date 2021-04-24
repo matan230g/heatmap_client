@@ -43,7 +43,8 @@ document.getElementById('filter-map1').addEventListener('click', function(e) {
 document.getElementById('filter-map2').addEventListener('click', function(e) { 
   filter_heatmaps(e,'2')},false);
 
-
+document.getElementById('filter-map').addEventListener('click', function(e) { 
+  filter_heatmaps(e,'3')},false);
 
 function filter_heatmaps(e,side){
   e.preventDefault();
@@ -266,7 +267,16 @@ function initAnaylsysValues(){
 
 function create_volcano_plot(plot,side){
   let id = side == 1 ? "plot1" : side == 2 ? "plot2" : "plot" 
-  let filter = side == 1 ? "#filter-map1" : side == 2 ? "#filter-map2" : "#filter-map"
+  let filter;
+  if ( side==1 ){
+    filter= "#filter-map1";
+  }
+  else if( side == 2){
+    filter= "#filter-map2";
+  }
+  else{
+    filter=  "#filter-map";
+  }
   let vp_data = plot['data'];
   let vp_layout = plot['layout'];
   plotly.newPlot(id,vp_data,vp_layout)
