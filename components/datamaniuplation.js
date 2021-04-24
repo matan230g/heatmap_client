@@ -136,7 +136,6 @@ function changeSelectClusterManipulate(event){
 
 
 function getAllValues(tableName){
-    console.log(tableName)
     let array = []
 
     table = document.getElementById(tableName);

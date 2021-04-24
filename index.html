@@ -12,6 +12,7 @@
     </head>
 
     <body>
+        <img src = "./resources/assets/home-logo-icon-2.jpg" style="width:50px; cursor:pointer; margin-bottom: 4px;" onclick="window.location.reload()">
     <div class="header">
         <div className="landing">
             <div class="dark-overlay">
@@ -56,13 +57,15 @@
                     <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
                 </div>
                 <div id="bt1">
-                    <button id='deseq-button1' type="button" class="btn btn-success">DSEQ</button>
+                    <button id='deseq-button1' type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal"> DESEQ</button>
                     <button id="restart1" type="button" class="btn btn-success">RESET DEFAULT</button>
                     <div id="spinner-map1" class="spinner-border text-muted hidden"  style="margin-left:35px;"></div>
                 </div>
-                <div>
+                <div  class="d-flex flex-column justify-content-center">
                     <div  id='inchlib1' ></div>
-                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div>  
+                    <div id='plot1'></div>
+                    <button id="filter-map1" type="button" class="btn btn-secondary hidden" style="width: 30%; margin:auto; margin-bottom:3rem;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div> 
                 </div>
             </div>
             <div>
@@ -84,31 +87,39 @@
                             Generate
                         </button>
                         <button id='clear-tb2' type="button" class="btn btn-primary">CLEAR</button>
+                        
                     </div>
                     <div id="bt2">
-                            <button id="deseq-button2" type="button" class="btn btn-success">DSEQ</button>
+                            <button id="deseq-button2" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
                             <button id="restart2" type="button" class="btn btn-success">RESET DEFAULT</button>
+                
                     </div>
               </div>
-                <div>
+                <div class="d-flex flex-column justify-content-center">
                     <div  id='inchlib2' ></div>
+                    <div id='plot2'></div>
+                    <button id="filter-map2" type="button" class="btn btn-secondary hidden" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
                     <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
                 </div>   
             </div>
         </div>
     </div>
-    <div id="one_maps_show" class="hidden">
-        <div class="d-flex justify-content-around">
-            <div class="uniquiehm" id='inchlib'></div>
+
+
+    
+    <div id="one_maps_show"  style="margin:auto" class="hidden">
+        <div class="d-flex justify-content-center" >
+            <div  id='inchlib' style="margin:auto"></div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div id='plot'></div>
+        </div>
+        <div  class="d-flex justify-content-center">
+            <button id="deseq-button" type="button" class="btn btn-success w-20" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div id='plot'></div>
-    </div>
-
-
-
-
+    
+<div id="home-page">
     <div class="form-container">
   
             <p>Your tab-separated matrix file should be in one of the supported matrix formats (see examples below) and have .csv file extension.</p>
@@ -137,10 +148,6 @@
             <div class="col-md-10 ">   
                 <form id="loadSettings"> 
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <input id="map2-loading" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;">
-                            <label id="use">Load 2 Maps</label>
-                        </div>
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label>Load Settings</label>
@@ -221,9 +228,9 @@
                     </div>
                 </div>
                 <div class="form-group row ">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6"> 
                         <label>Choose Linkage Type</label>
-                            <select class="form-control" id="linkage-select" style="width:60%">
+                            <select class="form-control" id="linkage-select" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -235,7 +242,7 @@
                     </div>
                     <div class="col-sm-6" id='mir-linkage-column' style="display: none;">
                         <label>Choose Column Linkage Type</label>
-                            <select class="form-control" id="linkage-select-column" style="width:60%">
+                            <select class="form-control" id="linkage-select-column" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -250,7 +257,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6">
                         <label for="exampleFormControlSelect1">Choose Distance Type</label>
-                            <select class="form-control" id="distance-select" style="width:60%">
+                            <select class="form-control" id="distance-select" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -265,7 +272,7 @@
                     </div>
                     <div class="col-sm-6" id='mir-distance-column' style="display: none;"> 
                         <label for="exampleFormControlSelect1">Choose Column Distance Type</label>
-                            <select class="form-control" id="distance-select-column" style="width:60%">
+                            <select class="form-control" id="distance-select-column" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -328,7 +335,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6" id='tgt-linkage-column' style="display: none;">
                         <label>Choose Linkage Type</label>
-                            <select class="form-control" id="linkage-select2" style="width:60%">
+                            <select class="form-control" id="linkage-select2" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -340,7 +347,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label>Choose Column Linkage Type</label>
-                            <select class="form-control" id="linkage-select-column2" style="width:60%">
+                            <select class="form-control" id="linkage-select-column2" style="width:30%">
                                 <option>Single</option>
                                 <option>Complete</option>
                                 <option>Average</option>
@@ -354,7 +361,7 @@
                 <div class="form-group row ">
                     <div class="col-sm-6">
                         <label for="exampleFormControlSelect1"> Distance Type</label>
-                            <select class="form-control" id="distance-select2" style="width:60%">
+                            <select class="form-control" id="distance-select2" style="width:30%">
                                 <option>Canberra</option>
                                 <option>Complete</option>
                                 <option>Cosine</option>
@@ -411,7 +418,10 @@
                 <div class="col-sm-6">
                     <p id="error-message">&nbsp;</p>
                     <input id="buttonid" type="submit" class="btn btn-primary"></input>
-                    <div id="spinner" class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                    <div id="spinner">
+                    <div class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                    <p>The Preprocess may take a few seconds...</p>
+                    </div>
                 </div>
             </form>
         </div>
@@ -423,7 +433,7 @@
 
 <hr class="my-4">    
 
-
+</div>
 
   <!-- Modal -->
   
@@ -601,22 +611,22 @@
                       </ul>
                     </div>
                 </nav>
-                <div  id="deseq_instructions" class="Deseq_analysis">
+                <div id="deseq_instructions" class="Deseq_analysis">
                     <p>
                         <br>
-                        To perform Deseq analysis, you must first upload the relevent files for the server.<br>
-                        1. Count matrix - csv file contains the quantity for each sample and gene.<br>
-                        2. Design matrix - csv file contains the conditions for each sample.<br>
-                        For Example:.<br>
-                        <br>
+                        To perform Deseq analysis, you must upload relevent conditions file.<br>
+                        The file must be csv type that contains a column named 'id' that contains identifiers for each row.<br>
+                        The Deseq analysis will be performed on data uploaded to the relevant heat map.<br>
+                        The data must contains a column named 'id' that contains identifiers for each row.<br>
+                        Important for Deseq analysis the data must contains count values (Integers),<br>
+                        The the number of columns in the count data file (not include id column),<br>
+                         must be the same as the number of rows in the conditions file (not include header).<br>
+                        For Example:<br>
                         <span style="font-weight:bold;">Count matrix :</span> <br>
-                        You can choose any name you want for the id column, in example below, we choose the name "id".
-                        The parameter for Deseq analysis, will be the id name from id column e.g "gene_1".
                         <img src="./resources/count_matrix_example.JPG"><br>
                         <br>
                         <span style="font-weight:bold;">Design Matrix:</span> <br>
-                        You can choose any name you want for the id column, in example below, we choose the name "sample_id".
-                        The parameter for Deseq analysis, will be the id name from id column e.g "sample_1".
+                        <br>
                         <img src="./resources/design_matrix_example.JPG">
                     </p>
                 </div>
@@ -628,12 +638,8 @@
                                 <br>
                                 <div class="form-group row">
                                     <br>
-                                    <div class="col-sm-6">
-                                        <label>Load Count Matrix Data</label>
-                                        <input type="file" id="count_matrix_input" class="form-control" style="width:60%" />
-                                    </div>
                                     <div id="er" class="col-sm-6">
-                                        <label>Load Design Matrix Data</label>
+                                        <label>Load Condition Matrix File</label>
                                         <input type="file" id="design_matrix_input" class="form-control" style="width:60%" />
                                     </div>
                                 </div>
@@ -642,19 +648,7 @@
                             <hr class="my-4">  
                             <form id="dseqAnalysForm" style="margin-top: 2rem;"> 
                                 <h3>Run Analysis</h3>
-                                <div class="form-group row">
                                     <br>
-                                    <div class="col-sm-6">
-                                            <label>Count Matrix Column Id</label>
-                                            <select class="form-control" id="count-matrix-select" style="width:80%">
-                                            </select>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Design Matrix Column Id</label>
-                                            <select class="form-control" id="design-matrix-select" style="width:80%">
-                                            </select>
-                                    </div>
-                                </div>
                                 <input id="dseq_analysys" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
                                 <div id="spinner-analysis" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
                                 <button id="dseq_analysys-download" type="submit" class="btn btn-success" hidden>Download Analysis</button>
@@ -666,12 +660,6 @@
                                 <div class="form-group row">
                                     <br>
                                     <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
-                                    <div class="form-group row">
-                                        <div id="dseq-input-add" class="col-sm-6">
-                                            <label id="use">Use existing analysis file for plot</label>
-                                            <input id="dseq-user-file" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked >
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6" id="user-analysis-input" hidden>
                                             <label>Load Analysis Result</label>
@@ -739,9 +727,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-
 
 </div>
     </body>

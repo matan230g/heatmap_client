@@ -111,6 +111,8 @@ function uploadOneHeatMap(){
 
   properties['raw_distance'] = document.getElementById('distance-select').value
   properties['raw_linkage'] = document.getElementById('linkage-select').value
+  properties['column_distance'] = ""
+  properties['column_linkage'] =""
   properties['both1']=0
   properties['compress1']=0
 
@@ -143,6 +145,7 @@ function uploadOneHeatMap(){
         $('#two_maps_show').hide()
         $('#buttons').show()
         $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $("#home-page").hide()
     }, (error) => {
       document.getElementById("spinner").style.display="none";
           let errormessage = error.response.data['detail']
@@ -182,18 +185,22 @@ function upload2HeatMaps(){
 
   properties['file2'] = propertiesSecond['file1']
   properties['metadata2'] = propertiesSecond['metadata']
+  properties['column_distance1'] = ""
+  properties['column_linkage1'] =""
+  properties['column_distance2'] = ""
+  properties['column_linkage2'] =""
 
   // Clustering
 
-  properties['raw_distance'] = document.getElementById('distance-select').value
-  properties['raw_linkage'] = document.getElementById('linkage-select').value
+  properties['raw_distance1'] = document.getElementById('distance-select').value
+  properties['raw_linkage1'] = document.getElementById('linkage-select').value
   properties['both1'] = 0
   properties['compress1']=0
 
   if(document.getElementById("miRNA-clust-select").value == "Both"){
     properties['both1']=1
-    properties['column_distance'] = document.getElementById('distance-select-column').value
-    properties['column_linkage'] = document.getElementById('linkage-select-column').value
+    properties['column_distance1'] = document.getElementById('distance-select-column').value
+    properties['column_linkage1'] = document.getElementById('linkage-select-column').value
   }
 
   if( document.getElementById("choose-compress").checked){
@@ -242,6 +249,7 @@ function upload2HeatMaps(){
 
       var second_first_connections= response.data.second_first_connections;
       localStorage.setItem('second_first_connections',JSON.stringify(second_first_connections))
+      $("#home-page").hide()
       $('html, body').animate({ scrollTop: 0 }, 'fast');
       }, (error) => {
           document.getElementById("spinner").style.display="none";

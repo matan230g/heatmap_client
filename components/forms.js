@@ -4,7 +4,7 @@ document.getElementById('checkbox-meta-data1').addEventListener('click', showHid
 document.getElementById('checkbox-meta-data2').addEventListener('click', showHideMetaData2);
 document.getElementById('choose-compress-manipulate').addEventListener('click', chooseCompressManipulate);
 document.getElementById('checkbox-loading-files-choose').addEventListener('click', showHideForms);
-document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
+//document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
 document.getElementById('choose-compress').addEventListener('click', changeCompress)
@@ -53,16 +53,13 @@ function showHideMapsNum(){
     var checkbox_target_md = document.getElementById("checkbox-target-metadata-option")
     var connections = document.getElementById("connections")
     var settingssecondheatmap = document.getElementById("secondheatmapssettings");
-    var hr = document.getElementById("hr2");
     document.getElementById("checkbox-meta-data2").checked = false;
-    //var settings = document.getElementById("checkbox-option");
 
     if(res){
         settingssecondheatmap.style.display="none"
         target_metadata.style.display="none"; 
         checkbox_target_md.style.display="none";
         connections.style.display="none";
-        hr.style.display="none";
     }
     else{
         settingssecondheatmap.style.display="block"
@@ -219,15 +216,6 @@ function showHideForms(){
     }
 }
 
-function showHideMap2Exist(){
-    let checkbox = document.getElementById("map2-loading").checked;
-    if(checkbox == true){
-        document.getElementById('map2-input').style.display="block";
-    }
-    else{
-        document.getElementById('map2-input').style.display="none";
-    }
-}
 
 $('#downoad_map').unbind('click').bind('click',(function(e){
    e.preventDefault();
