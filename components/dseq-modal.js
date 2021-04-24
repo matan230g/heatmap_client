@@ -57,7 +57,10 @@ function filter_heatmaps(e,side){
       }).then((response) => {
         json_data = JSON.parse(response.data['plot']);
         heatmap_data = response.data.heatmap;
-        inchlibTarget = side===3 ? "inchlib" : 'inchlib'+side; 
+        let inchlibTarget = 'inchlib'+side;
+        if (side==3){
+          inchlibTarget = "inchlib"
+        }
         drawmap(heatmap_data,inchlibTarget)
         create_volcano_plot(json_data,side);
     })
