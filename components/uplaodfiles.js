@@ -25,6 +25,7 @@ const {API_URL} = require('./index')
     uploadOneHeatMap();
   }
   else{
+
     upload2HeatMaps()
 
   }
@@ -115,6 +116,9 @@ function uploadOneHeatMap(){
   properties['column_linkage'] =""
   properties['both1']=0
   properties['compress1']=0
+  properties['norm_type1'] = 'Z-Score'
+  properties['range_min1'] = '0'
+  properties['range_max1'] = '0'
  
 
   if(document.getElementById("miRNA-clust-select").value == "Both"){
@@ -127,6 +131,15 @@ function uploadOneHeatMap(){
     properties['compressed_number'] = document.getElementById('compressed-number').value
     properties['compressed_value'] = document.getElementById('compressed-value').value
   }
+
+  if(document.getElementById("normalization-first-select").value === "MinMax")
+  {
+    properties['norm_type1'] = 'MinMaxScaler'
+    properties['range_min1'] = document.getElementById("normaliztion-first-range-from").value
+    properties['range_max1'] = document.getElementById("normaliztion-first-range-to").value
+  }
+
+
 
   // ToDo get element from user choise
   properties['norm_type1'] = 'MinMaxScaler'
@@ -148,7 +161,7 @@ function uploadOneHeatMap(){
         }
         drawmap(response.data,"inchlib")
         $('#one_maps_show').show()
-        $('#two_maps_show').hide()
+         
         $('#buttons').show()
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $("#home-page").hide()
@@ -195,6 +208,12 @@ function upload2HeatMaps(){
   properties['column_linkage1'] =""
   properties['column_distance2'] = ""
   properties['column_linkage2'] =""
+  properties['norm_type1'] = 'Z-Score'
+  properties['norm_type2'] = 'Z-Score'
+  properties['range_min1'] = 0
+  properties['range_max1'] = 0
+  properties['range_min2'] = 0
+  properties['range_max2'] = 0
 
   // Clustering
 
@@ -231,15 +250,21 @@ function upload2HeatMaps(){
     properties['compressed_value2'] = document.getElementById('compressed-value2').value
   }
   
-  // ToDo get element from user
-  // first_heat_map
-  properties['norm_type1'] = 'MinMaxScaler'
-  properties['range_min1'] = 0
-  properties['range_max1'] = 1
-  // second_heat_map
-  properties['norm_type2'] = 'MinMaxScaler'
-  properties['range_min2'] = 0
-  properties['range_max2'] = 1
+  if(document.getElementById("normalization-first-select").value === "MinMax")
+  {
+    properties['norm_type1'] = 'MinMaxScaler'
+    properties['range_min1'] = document.getElementById("normaliztion-first-range-from").value
+    properties['range_max1'] = document.getElementById("normaliztion-first-range-to").value
+  }
+
+  if(document.getElementById("normalization-second-select").value === "MinMax")
+  {
+    properties['norm_type2'] = 'MinMaxScaler'
+    properties['range_min2'] = document.getElementById("normaliztion-second-range-from").value
+    properties['range_max2'] = document.getElementById("normaliztion-second-range-to").value
+  }
+
+
 
 
   formData.append("files", JSON.stringify(properties));

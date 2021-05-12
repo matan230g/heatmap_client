@@ -64,8 +64,30 @@
                 <div  class="d-flex flex-column justify-content-center">
                     <div  id='inchlib1' ></div>
                     <div id='plot1'></div>
-                    <button id="filter-map1" type="button" class="btn btn-secondary hidden" style="width: 30%; margin:auto; margin-bottom:3rem;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
-                    <div id="spinner-map1" class="spinner-border text-muted hidden" hidden style="margin-left:35px;"></div> 
+                    <div class="hidden" id='filter-first-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="high1" checked>
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Filter by Higher color
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="low1" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Filter by Lower color
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="normal1" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Filter by Normal color
+                            </label>
+                          </div>
+                            <br> 
+                            <button id="filter-map1" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                            <div id="spinner-map1" class="spinner-border text-muted" hidden style="margin-left:35px;"></div> 
+                    </div>
+                
                 </div>
             </div>
             <div>
@@ -98,8 +120,31 @@
                 <div class="d-flex flex-column justify-content-center">
                     <div  id='inchlib2' ></div>
                     <div id='plot2'></div>
-                    <button id="filter-map2" type="button" class="btn btn-secondary hidden" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
-                    <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
+                    <div class="hidden" id='filter-second-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
+                        <label >Filter Heat Map By Color</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="high2" checked>
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Filter by Higher color
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="low2" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Filter by Lower color
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="normal3" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Filter by Normal color
+                            </label>
+                          </div>
+                            <br> 
+                            <button id="filter-map2" type="button" class="btn btn-secondary" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                            <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
+                    </div>
+                   
                 </div>   
             </div>
         </div>
@@ -115,6 +160,27 @@
           <div id='plot'></div>
         </div>
         <div class="d-flex justify-content-center" >
+            <div class="hidden" id='filter-third-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
+                <label >Filter Heat Map By Color</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="high3" checked>
+                    <label class="form-check-label" for="flexCheckDefault">
+                    Filter by Higher color
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="low3" >
+                    <label class="form-check-label" for="flexCheckChecked">
+                    Filter by Lower color
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="normal3" >
+                    <label class="form-check-label" for="flexCheckChecked">
+                    Filter by Normal color
+                    </label>
+                  </div>
+                  </div>
             <button id="filter-map" type="button" class="btn btn-secondary hidden" style="width: 30%; margin:auto; margin-bottom:3rem;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
         </div>
         <div class="d-flex justify-content-center" >
@@ -171,6 +237,7 @@
             </div>
         </div> 
 </div>
+
 
 <div id="form-new">
 
@@ -294,16 +361,38 @@
                             </select> 
                     </div>
                 </div>
-  
+                <div class="form-group row ">
+                    <div class="col-sm-6" id='normalization-first'>
+                        <label>Choose Normalization Method</label>
+                            <select class="form-control" id="normalization-first-select" style="width:30%">
+                                <option>Z-Score</option>
+                                <option>MinMax</option>
+                            </select>
+                    </div>
+                </div>
+                <div id="first-ranges" class="form-group row" style="display:none;">
+                    <div class="col-sm-6"  > 
+                        <label>Range From</label>
+                        <br>
+                        <input   id="normaliztion-first-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
+                        min="0" max="5000" value="0">
+                    </div>
+                    <div class="col-sm-6"  > 
+                        <label>Range To</label>
+                        <br>
+                        <input   id="normaliztion-first-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
+                        min="0" max="5000" value="0">
+                    </div>
+                </div>
                 <div class="form-group row ">
                     <div class="col-sm-6">
                         <br>
-                        <input  id="choose-compress" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked>
+                        <input  id="choose-compress" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;">
                         <label>Compress</label>
-
                     </div>
                 </div>
-                <div class="form-group row " id='compress-detailes'>
+
+                <div class="hidden form-group row " id='compress-detailes'>
                     <div class="col-sm-6"  > 
                         <label>Compressed number</label>
                         <br>
@@ -398,16 +487,39 @@
                             </select> 
                     </div>
                 </div>
+                <!--NORMALIZATION-->
                 <div class="form-group row ">
-                    <div class="col-sm-6">
-
-                        <br>
-                        <input  id="choose-compress2" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked>
-                        <label>Compress</label>
-
+                    <div class="col-sm-6" id='normalization-second'>
+                        <label>Choose Normalization Method</label>
+                            <select class="form-control" id="normalization-second-select" style="width:30%">
+                                <option>Z-Score</option>
+                                <option>MinMax</option>
+                            </select>
                     </div>
                 </div>
-                <div class="form-group row " id='compress-detailes2'>
+                <div id="second-ranges" class="form-group row " style="display:none;">
+                        <div class="col-sm-6"  > 
+                            <label>Range From</label>
+                            <input   id="normaliztion-second-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
+                            min="0" max="5000" value="0">
+                        </div>
+                        <div class="col-sm-6"  > 
+                            <label>Range To</label>
+                            <input   id="normaliztion-second-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
+                            min="0" max="5000" value="0">
+                        </div>
+                </div>
+                <!--NORMALIZATION-->
+                
+                <!--COMPRESS-->
+                <div class="form-group row ">
+                    <div class="col-sm-6">
+                        <br>
+                        <input  id="choose-compress2" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;">
+                        <label>Compress</label>
+                    </div>
+                </div>
+                <div class="form-group row " id='compress-detailes2' style="display:none;">
                     <div class="col-sm-6"  > 
                         <label>Compressed number</label>
                         <br>
@@ -422,6 +534,7 @@
                             </select> 
                     </div>
                 </div>
+                <!--COMPRESS-->
             </div>
                 <div class="col-sm-6">
                     <p id="error-message">&nbsp;</p>
@@ -531,8 +644,30 @@
                                 </select> 
                         </div>
                     </div>
+                    <div class="form-group row ">
+                        <div class="col-sm-6" id='normalization-action'>
+                            <label>Choose Normalization Method</label>
+                                <select class="form-control" id="normalization-action-select" style="width:30%">
+                                    <option>Z-Score</option>
+                                    <option>MinMax</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-sm-6"  > 
+                            <label>Range From</label>
+                            <br>
+                            <input   id="normaliztion-action-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
+                            min="0" max="5000" value="0">
+                        </div>
+                        <div class="col-sm-6"  > 
+                            <label>Range To</label>
+                            <br>
+                            <input   id="normaliztion-action-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
+                            min="0" max="5000" value="0">
+                        </div>
+                    </div>
                     <div class="form-group row">
-
                     <div class="col">
                         <br>
                         <input  id="choose-compress-manipulate" type="checkbox" class="form-check-input" style="margin-bottom: 1rem;" checked>

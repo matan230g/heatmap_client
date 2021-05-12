@@ -4,13 +4,13 @@ document.getElementById('checkbox-meta-data1').addEventListener('click', showHid
 document.getElementById('checkbox-meta-data2').addEventListener('click', showHideMetaData2);
 document.getElementById('choose-compress-manipulate').addEventListener('click', chooseCompressManipulate);
 document.getElementById('checkbox-loading-files-choose').addEventListener('click', showHideForms);
-//document.getElementById('map2-loading').addEventListener('click', showHideMap2Exist);
 document.getElementById('miRNA-clust-select').addEventListener('change', changeSelectClusterMir)
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
 document.getElementById('choose-compress').addEventListener('click', changeCompress)
 document.getElementById('choose-compress2').addEventListener('click', changeCompress2)
-
-
+document.getElementById('normalization-first-select').addEventListener('change', showHideRangesFirst)
+document.getElementById("normalization-second-select").addEventListener('change', showHideRangesSecond)
+//document.getElementById("normalization-action-select").addEventListener('change', showHideRangesAction)
 function showHideMetaData1(){
     const res = document.getElementById("checkbox-meta-data1").checked;
     var settings = document.getElementById("checkbox-mirNA-metadata-option");
@@ -47,6 +47,26 @@ function showHideMetaData2(){
     }
 }
 
+function showHideRangesFirst(){
+    var normalizationMethod = document.getElementById("normalization-first-select").value
+    if(normalizationMethod === "MinMax"){
+        $('#first-ranges').show()
+    }
+    else{
+        $('#first-ranges').hide()
+    }
+}
+
+function showHideRangesSecond(){
+    var normalizationMethod = document.getElementById("normalization-second-select").value
+    if(normalizationMethod === "MinMax"){
+        $('#second-ranges').show()
+    }
+    else{
+        $('#second-ranges').hide()
+    }
+}
+
 function showHideMapsNum(){
     const res = document.getElementById("checkbox-maps-choose").checked;
     var target_metadata =  document.getElementById("checkbox-target-metadata-op");
@@ -65,7 +85,6 @@ function showHideMapsNum(){
         settingssecondheatmap.style.display="block"
         target_metadata.style.display="block";
         connections.style.display="block";
-        hr.style.display="block";
 
     }
 }
@@ -76,6 +95,8 @@ export function validate(res){
     var input3 = document.getElementById("connection")
     var input4 = document.getElementById("mirNA-metadata")
     var input5 = document.getElementById("target-metadata")
+
+
     
     const res_meta_data1 = document.getElementById("checkbox-meta-data1").checked;
     const res_meta_data2 = document.getElementById("checkbox-meta-data2").checked;
@@ -122,6 +143,9 @@ export function validate(res){
             input5.classList.remove("input-error");
         }
     }
+
+
+    
     return true;
 
 }

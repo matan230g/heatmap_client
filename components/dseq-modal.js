@@ -45,11 +45,16 @@ document.getElementById('filter-map2').addEventListener('click', function(e) {
 
 document.getElementById('filter-map').addEventListener('click', function(e) { 
   filter_heatmaps(e,'3')},false);
+  
 
 function filter_heatmaps(e,side){
   e.preventDefault();
+
+  values = createFilterValues()
+
+
   axios.get(API_URL+'deseq/filter_heatmap',{
-      params:{'side' :side, 'values':'High,Low'
+      params:{'side' :side, 'values':values
     } ,
       headers: {
         'content-Type': 'multipart/form-data',
@@ -231,6 +236,7 @@ function plotDseq(e){
     y_column = document.getElementById("y-column-select").value
     y_operation= document.getElementById("y-operation-select").value
     y_treshold = document.getElementById('y-treshold').value
+  
 
     formData.append("x_column",x_column);
     formData.append("x_th",x_treshold);
@@ -273,16 +279,32 @@ function create_volcano_plot(plot,side){
   let id = side == 1 ? "plot1" : side == 2 ? "plot2" : "plot" 
   let filter;
   if ( side==1 ){
-    filter= "#filter-map1";
+    filter= "#filter-first-dseq";
   }
   else if( side == 2){
-    filter= "#filter-map2";
+    filter= "#filter-second-dseq";
   }
   else{
-    filter=  "#filter-map";
+    filter=  "#filter-third-dseq";
   }
   let vp_data = plot['data'];
   let vp_layout = plot['layout'];
   plotly.newPlot(id,vp_data,vp_layout)
   $(filter).show()
+}
+
+function createFilterValues(){
+  res=""
+  if(document.getElementById('high'+heatMapNumber).checked){
+  res = res+"High,"
+  }
+  if(document.getElementById('low'+heatMapNumber).checked){
+    res = res+"Low,"
+    }
+    if(document.getElementById('normal'+heatMapNumber).checked){
+      res = res+"Normal"
+      }
+
+      return res;
+
 }
