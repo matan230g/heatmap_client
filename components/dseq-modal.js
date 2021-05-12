@@ -49,7 +49,8 @@ document.getElementById('filter-map').addEventListener('click', function(e) {
 function filter_heatmaps(e,side){
   e.preventDefault();
   axios.get(API_URL+'deseq/filter_heatmap',{
-      params:{'side' :side} ,
+      params:{'side' :side, 'values':'High,Low'
+    } ,
       headers: {
         'content-Type': 'multipart/form-data',
         "Access-Control-Allow-Origin": "*"

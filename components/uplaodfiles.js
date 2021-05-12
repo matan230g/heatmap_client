@@ -115,6 +115,7 @@ function uploadOneHeatMap(){
   properties['column_linkage'] =""
   properties['both1']=0
   properties['compress1']=0
+ 
 
   if(document.getElementById("miRNA-clust-select").value == "Both"){
     properties['both1']=1
@@ -126,6 +127,11 @@ function uploadOneHeatMap(){
     properties['compressed_number'] = document.getElementById('compressed-number').value
     properties['compressed_value'] = document.getElementById('compressed-value').value
   }
+
+  // ToDo get element from user choise
+  properties['norm_type1'] = 'MinMaxScaler'
+  properties['range_min1'] = 0
+  properties['range_max1'] = 1
 
   formData.append("files", JSON.stringify(properties));
 
@@ -225,6 +231,15 @@ function upload2HeatMaps(){
     properties['compressed_value2'] = document.getElementById('compressed-value2').value
   }
   
+  // ToDo get element from user
+  // first_heat_map
+  properties['norm_type1'] = 'MinMaxScaler'
+  properties['range_min1'] = 0
+  properties['range_max1'] = 1
+  // second_heat_map
+  properties['norm_type2'] = 'MinMaxScaler'
+  properties['range_min2'] = 0
+  properties['range_max2'] = 1
 
 
   formData.append("files", JSON.stringify(properties));
