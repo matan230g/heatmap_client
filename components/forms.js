@@ -8,8 +8,8 @@ document.getElementById('miRNA-clust-select').addEventListener('change', changeS
 document.getElementById('target-clust-select').addEventListener('change', changeSelectClusterTarget)
 document.getElementById('choose-compress').addEventListener('click', changeCompress)
 document.getElementById('choose-compress2').addEventListener('click', changeCompress2)
-document.getElementById('normalization-first-select').addEventListener('change', showHideRangesFirst)
-document.getElementById("normalization-second-select").addEventListener('change', showHideRangesSecond)
+document.getElementById('normalization-first-select').addEventListener('change', showHideLogPBaseFirst)
+document.getElementById("normalization-second-select").addEventListener('change', showHideLogPBaseSecond)
 //document.getElementById("normalization-action-select").addEventListener('change', showHideRangesAction)
 function showHideMetaData1(){
     const res = document.getElementById("checkbox-meta-data1").checked;
@@ -47,23 +47,23 @@ function showHideMetaData2(){
     }
 }
 
-function showHideRangesFirst(){
+function  showHideLogPBaseFirst(){
     var normalizationMethod = document.getElementById("normalization-first-select").value
-    if(normalizationMethod === "MinMax"){
-        $('#first-ranges').show()
+    if(normalizationMethod === "LogP1"){
+        $('#first-base-value').show()
     }
     else{
-        $('#first-ranges').hide()
+        $('#first-base-value').hide()
     }
 }
 
-function showHideRangesSecond(){
+function showHideLogPBaseSecond(){
     var normalizationMethod = document.getElementById("normalization-second-select").value
-    if(normalizationMethod === "MinMax"){
-        $('#second-ranges').show()
+    if(normalizationMethod === "LogP1"){
+        $('#second-base-value').show()
     }
     else{
-        $('#second-ranges').hide()
+        $('#second-base-value').hide()
     }
 }
 

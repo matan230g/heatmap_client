@@ -117,10 +117,9 @@ function uploadOneHeatMap(){
   properties['both1']=0
   properties['compress1']=0
   properties['norm_type1'] = 'Z-Score'
-  properties['range_min1'] = '0'
-  properties['range_max1'] = '0'
- 
+  properties['base1'] = '0'
 
+ 
   if(document.getElementById("miRNA-clust-select").value == "Both"){
     properties['both1']=1
     properties['column_distance'] = document.getElementById('distance-select-column').value
@@ -132,19 +131,11 @@ function uploadOneHeatMap(){
     properties['compressed_value'] = document.getElementById('compressed-value').value
   }
 
-  if(document.getElementById("normalization-first-select").value === "MinMax")
+  if(document.getElementById("normalization-first-select").value === "LogP1")
   {
-    properties['norm_type1'] = 'MinMaxScaler'
-    properties['range_min1'] = document.getElementById("normaliztion-first-range-from").value
-    properties['range_max1'] = document.getElementById("normaliztion-first-range-to").value
+    properties['norm_type1'] = 'Log'
+    properties['base1'] = document.getElementById("normalization-base1").value
   }
-
-
-
-  // ToDo get element from user choise
-  properties['norm_type1'] = 'MinMaxScaler'
-  properties['range_min1'] = 0
-  properties['range_max1'] = 1
 
   formData.append("files", JSON.stringify(properties));
 
@@ -161,6 +152,7 @@ function uploadOneHeatMap(){
         }
         drawmap(response.data,"inchlib")
         $('#one_maps_show').show()
+        $('#bt3').show()
          
         $('#buttons').show()
         $('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -210,11 +202,10 @@ function upload2HeatMaps(){
   properties['column_linkage2'] =""
   properties['norm_type1'] = 'Z-Score'
   properties['norm_type2'] = 'Z-Score'
-  properties['range_min1'] = 0
-  properties['range_max1'] = 0
-  properties['range_min2'] = 0
-  properties['range_max2'] = 0
-
+  properties['base1'] = 0
+  properties['base2'] = 0
+  properties["deseq_normalization1"] = document.getElementById("dseq-normalization1").checked;
+  properties["deseq_normalization2"] = document.getElementById("dseq-normalization2").checked;
   // Clustering
 
   properties['raw_distance1'] = document.getElementById('distance-select').value
@@ -237,7 +228,7 @@ function upload2HeatMaps(){
   properties['raw_distance2'] = document.getElementById('distance-select').value
   properties['raw_linkage2'] = document.getElementById('linkage-select').value
   properties['both2'] = 0
-  properties['compress2']=0
+  properties['compress2']= 0
 
   if(document.getElementById("target-clust-select").value == "Both"){
     properties['both2'] = 1
@@ -250,18 +241,16 @@ function upload2HeatMaps(){
     properties['compressed_value2'] = document.getElementById('compressed-value2').value
   }
   
-  if(document.getElementById("normalization-first-select").value === "MinMax")
+  if(document.getElementById("normalization-first-select").value === "LogP1" )
   {
-    properties['norm_type1'] = 'MinMaxScaler'
-    properties['range_min1'] = document.getElementById("normaliztion-first-range-from").value
-    properties['range_max1'] = document.getElementById("normaliztion-first-range-to").value
+    properties['norm_type1'] = 'Log'
+    properties['base1'] = document.getElementById("normalization-base-value-first").value
   }
 
-  if(document.getElementById("normalization-second-select").value === "MinMax")
+  if(document.getElementById("normalization-second-select").value === "LogP1")
   {
-    properties['norm_type2'] = 'MinMaxScaler'
-    properties['range_min2'] = document.getElementById("normaliztion-second-range-from").value
-    properties['range_max2'] = document.getElementById("normaliztion-second-range-to").value
+    properties['norm_type2'] = 'Log'
+    properties['base2'] = document.getElementById("normaliztion-base-value-second").value
   }
 
 
@@ -282,6 +271,7 @@ function upload2HeatMaps(){
       localStorage.setItem("map2",response.data.second)
       drawmap2(response.data.second,"inchlib2");
       $('#one_maps_show').hide()
+      $('#bt3').hide()
       $('#two_maps_show').show()
       $('#buttons').show()
       var first_second_connections= response.data.first_second_connections;

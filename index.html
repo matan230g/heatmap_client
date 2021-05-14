@@ -30,6 +30,9 @@
                 <button id="save-settings-button" class="btn btn-success mb-3">
                     DOWNLOAD SETTINGS
                 </button>
+                <div id="bt3" class="hidden">
+                    <button id="deseq-button3" type="button" class="btn btn-success w-20" data-toggle="modal" data-target="#deseqModal3">DESEQ</button>
+                </div> 
             </div>
         </div>
     </div>
@@ -57,7 +60,7 @@
                     <button id='clear-tb1' type="button" class="btn btn-primary">CLEAR</button>
                 </div>
                 <div id="bt1">
-                    <button id='deseq-button1' type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal"> DESEQ</button>
+                    <button id='deseq-button1' type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal1">DESEQ</button>
                     <button id="restart1" type="button" class="btn btn-success">RESET DEFAULT</button>
                     <div id="spinner-map1" class="spinner-border text-muted hidden"  style="margin-left:35px;"></div>
                 </div>
@@ -112,16 +115,14 @@
                         
                     </div>
                     <div id="bt2">
-                            <button id="deseq-button2" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
+                            <button id="deseq-button2" type="button" class="btn btn-success" data-toggle="modal" data-target="#deseqModal2">DESEQ</button>
                             <button id="restart2" type="button" class="btn btn-success">RESET DEFAULT</button>
-                
                     </div>
               </div>
                 <div class="d-flex flex-column justify-content-center">
                     <div  id='inchlib2' ></div>
                     <div id='plot2'></div>
                     <div class="hidden" id='filter-second-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
-                        <label >Filter Heat Map By Color</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="high2" checked>
                             <label class="form-check-label" for="flexCheckDefault">
@@ -135,14 +136,14 @@
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="normal3" >
+                            <input class="form-check-input" type="checkbox" value="" id="normal2" >
                             <label class="form-check-label" for="flexCheckChecked">
                             Filter by Normal color
                             </label>
                           </div>
                             <br> 
-                            <button id="filter-map2" type="button" class="btn btn-secondary" style="width: 30%;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
-                            <div id="spinner-map2" class="spinner-border text-muted hidden" style="margin-left:35px;"></div>  
+                            <button id="filter-map2" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                            <div id="spinner-map2" class="spinner-border text-muted" hidden style="margin-left:35px;"></div> 
                     </div>
                    
                 </div>   
@@ -159,33 +160,28 @@
         <div class="d-flex justify-content-center" >
           <div id='plot'></div>
         </div>
-        <div class="d-flex justify-content-center" >
-            <div class="hidden" id='filter-third-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
-                <label >Filter Heat Map By Color</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="high3" checked>
-                    <label class="form-check-label" for="flexCheckDefault">
-                    Filter by Higher color
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="low3" >
-                    <label class="form-check-label" for="flexCheckChecked">
-                    Filter by Lower color
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="normal3" >
-                    <label class="form-check-label" for="flexCheckChecked">
-                    Filter by Normal color
-                    </label>
-                  </div>
-                  </div>
-            <button id="filter-map" type="button" class="btn btn-secondary hidden" style="width: 30%; margin:auto; margin-bottom:3rem;" data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
-        </div>
-        <div class="d-flex justify-content-center" >
-
-            <button id="deseq-button" type="button" class="btn btn-success w-20" data-toggle="modal" data-target="#deseqModal">DESEQ</button>
+        <div class="hidden" id='filter-third-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="high3" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                Filter by Higher color
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="low3" >
+                <label class="form-check-label" for="flexCheckChecked">
+                Filter by Lower color
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="normal3" >
+                <label class="form-check-label" for="flexCheckChecked">
+                Filter by Normal color
+                </label>
+              </div>
+                <br> 
+                <button id="filter-map3" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                <div id="spinner-map3" class="spinner-border text-muted" hidden style="margin-left:35px;"></div>
         </div>
         </div>
 
@@ -241,7 +237,7 @@
 
 <div id="form-new">
 
-<p style="font-weight:bold">Settings</p>
+<p style="font-weight:bold">Upload Data</p>
     <div class="row">
         <div class="col-md-10 ">   
             <form id="myDefForm"> 
@@ -285,9 +281,7 @@
                 <!--FIRST HEATMAP CLUSTERING-->
                 <div class="form-group row ">
                     <div class="col-sm-6">
-                        <label style="font-weight:bold">Choose Cluster</label>
-                        <br><br>
-                        <label style="font-weight:bold">First HeatMap</label>
+                        <label style="font-weight:bold">First HeatMap Settings</label>
                         <br><br>
                     </div>
                 </div>
@@ -366,22 +360,23 @@
                         <label>Choose Normalization Method</label>
                             <select class="form-control" id="normalization-first-select" style="width:30%">
                                 <option>Z-Score</option>
-                                <option>MinMax</option>
+                                <option>LogP1</option>
                             </select>
                     </div>
-                </div>
-                <div id="first-ranges" class="form-group row" style="display:none;">
-                    <div class="col-sm-6"  > 
-                        <label>Range From</label>
-                        <br>
-                        <input   id="normaliztion-first-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
-                        min="0" max="5000" value="0">
+                        <div class="col-sm-6"  > 
+                            <div id="first-base-value" style="display:none;">
+                                <label>Choose Log Base</label>
+                                <br>
+                                <input   id="normalization-base-value-first" class="form-control" style="width:60%"  type="number" 
+                                min="0" max="5000" value="0">
+                            </div>
                     </div>
-                    <div class="col-sm-6"  > 
-                        <label>Range To</label>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-6">
                         <br>
-                        <input   id="normaliztion-first-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
-                        min="0" max="5000" value="0">
+                        <input  id="dseq-normalization1" type="checkbox" class="form-check-input">
+                        <label>Normalize Columns By DESEQ</label>
                     </div>
                 </div>
                 <div class="form-group row ">
@@ -414,7 +409,7 @@
             <div id="secondheatmapssettings" >
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label style="font-weight:bold">Second HeatMap</label>
+                        <label style="font-weight:bold">Second HeatMap Settings</label>
                         <br><br>
                     </div>
                 </div>
@@ -493,24 +488,25 @@
                         <label>Choose Normalization Method</label>
                             <select class="form-control" id="normalization-second-select" style="width:30%">
                                 <option>Z-Score</option>
-                                <option>MinMax</option>
+                                <option>LogP1</option>
                             </select>
                     </div>
+                <div class="col-sm-6"> 
+                            <div id="second-base-value" class="form-group row " style="display:none;">
+                                <label>Choose Log Base</label>
+                                <input   id="normalization-base-value-second" class="form-control" style="width:60%"  type="number"
+                                min="0" max="5000" value="0">
+                            </div>
                 </div>
-                <div id="second-ranges" class="form-group row " style="display:none;">
-                        <div class="col-sm-6"  > 
-                            <label>Range From</label>
-                            <input   id="normaliztion-second-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
-                            min="0" max="5000" value="0">
-                        </div>
-                        <div class="col-sm-6"  > 
-                            <label>Range To</label>
-                            <input   id="normaliztion-second-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
-                            min="0" max="5000" value="0">
-                        </div>
-                </div>
+            </div>
                 <!--NORMALIZATION-->
-                
+                <div class="form-group row ">
+                    <div class="col-sm-6">
+                        <br>
+                        <input  id="dseq-normalization2" type="checkbox" class="form-check-input">
+                        <label>Normalize Columns By DESEQ</label>
+                    </div>
+                </div>
                 <!--COMPRESS-->
                 <div class="form-group row ">
                     <div class="col-sm-6">
@@ -644,29 +640,6 @@
                                 </select> 
                         </div>
                     </div>
-                    <div class="form-group row ">
-                        <div class="col-sm-6" id='normalization-action'>
-                            <label>Choose Normalization Method</label>
-                                <select class="form-control" id="normalization-action-select" style="width:30%">
-                                    <option>Z-Score</option>
-                                    <option>MinMax</option>
-                                </select>
-                        </div>
-                    </div>
-                    <div class="form-group row ">
-                        <div class="col-sm-6"  > 
-                            <label>Range From</label>
-                            <br>
-                            <input   id="normaliztion-action-range-from" class="form-control" style="width:60%"  type="number" step="0.01"
-                            min="0" max="5000" value="0">
-                        </div>
-                        <div class="col-sm-6"  > 
-                            <label>Range To</label>
-                            <br>
-                            <input   id="normaliztion-action-range-to" class="form-control" style="width:60%"  type="number" step="0.01"
-                            min="0" max="5000" value="0">
-                        </div>
-                    </div>
                     <div class="form-group row">
                     <div class="col">
                         <br>
@@ -726,13 +699,12 @@
     </div>
   </div>
 
- <!-- DSEQ-Modal -->
-
-<div class="modal fade" id="deseqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- DSEQ-Modal-First-Map -->
+<div class="modal fade" id="deseqModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Deseq</h5>
+          <h5 class="modal-title" id="exampleModalLabel1">Deseq</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -740,21 +712,21 @@
         <div class="modal-body">
             <div class="deseq">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav1">
                       <ul class="navbar-nav">
                         <li class="nav-item">
-                          <a id="href-instructions" class="nav-link">Instructions</a>
+                          <a id="href-instructions1" class="nav-link">Instructions</a>
                         </li>
                         <li class="nav-item">
-                            <a id="href-parameters" class="nav-link">Parameters</a>
+                            <a id="href-parameters1" class="nav-link">Parameters</a>
                         </li>
                       </ul>
                     </div>
                 </nav>
-                <div id="deseq_instructions" class="Deseq_analysis">
+                <div id="deseq_instructions1" class="Deseq_analysis">
                     <p>
                         <br>
                         To perform Deseq analysis, you must upload relevent conditions file.<br>
@@ -773,45 +745,45 @@
                         <img src="./resources/design_matrix_example.JPG">
                     </p>
                 </div>
-                <div  id="deseq_parameters" style="display: none;">
+                <div  id="deseq_parameters1" style="display: none;">
                     <div class="row">
                         <div class="col-md-10 ">   
-                            <form id="dseqForm" style="margin-top: 2rem;"> 
+                            <form id="dseqForm1" style="margin-top: 2rem;"> 
                                 <h3>Upload Files</h3>
                                 <br>
                                 <div class="form-group row">
                                     <br>
-                                    <div id="er" class="col-sm-6">
+                                    <div id="er1" class="col-sm-6">
                                         <label>Load Condition Matrix File</label>
-                                        <input type="file" id="design_matrix_input" class="form-control" style="width:60%" />
+                                        <input type="file" id="design_matrix_input1" class="form-control" style="width:60%" />
                                     </div>
                                 </div>
-                                <input id="dseq_files" type="submit" class="btn btn-info" value="Upload data">
+                                <input id="dseq_files1" type="submit" class="btn btn-info" value="Upload data">
                             </form>
                             <hr class="my-4">  
-                            <form id="dseqAnalysForm" style="margin-top: 2rem;"> 
+                            <form id="dseqAnalysForm1" style="margin-top: 2rem;"> 
                                 <h3>Run Analysis</h3>
                                     <br>
-                                <input id="dseq_analysys" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
-                                <div id="spinner-analysis" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
-                                <button id="dseq_analysys-download" type="submit" class="btn btn-success" hidden>Download Analysis</button>
+                                <input id="dseq_analysys1" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
+                                <div id="spinner-analysis1" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                                <button id="dseq_analysys-download1" type="submit" class="btn btn-success" hidden>Download Analysis</button>
                             </form>
                             <hr class="my-4">    
-                            <form id="dseqPlotForm" style="margin-top: 2rem;">
+                            <form id="dseqPlotForm1" style="margin-top: 2rem;">
                                 <h3>Plot Deseq</h3>
                                 <br> 
                                 <div class="form-group row">
                                     <br>
                                     <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
                                     <div class="form-group row">
-                                        <div class="col-sm-6" id="user-analysis-input" hidden>
+                                        <div class="col-sm-6" id="user-analysis-input1" hidden>
                                             <label>Load Analysis Result</label>
-                                            <input type="file" class="form-control" id="dseq-anlysis-input" style= "width:60%" />
+                                            <input type="file" class="form-control" id="dseq-anlysis-input1" style= "width:60%" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                             <label>X Column</label>
-                                            <select class="form-control" id="x-column-select" style="width:80%">
+                                            <select class="form-control" id="x-column-select1" style="width:80%">
                                                 <option>baseMean</option>
                                                 <option>log2FoldChange</option>
                                                 <option>lfcSE</option>
@@ -822,7 +794,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Y Column</label>
-                                        <select class="form-control" id="y-column-select" style="width:80%">
+                                        <select class="form-control" id="y-column-select1" style="width:80%">
                                             <option>baseMean</option>
                                             <option>log2FoldChange</option>
                                             <option>lfcSE</option>
@@ -835,14 +807,14 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label>X Column Operation</label>
-                                            <select class="form-control" id="x-operation-select" style="width:80%">
+                                            <select class="form-control" id="x-operation-select1" style="width:80%">
                                                 <option>None</option>
                                                 <option>Log</option>
                                             </select>
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Y Column Operation</label>
-                                        <select class="form-control" id="y-operation-select" style="width:80%">
+                                        <select class="form-control" id="y-operation-select1" style="width:80%">
                                             <option>None</option>
                                             <option>Log</option>
                                         </select>
@@ -851,14 +823,14 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label>X Treshold</label>
-                                        <input type="number" class="form-control" id="x-treshold" style="width: 60%;" min="0" step="0.01">
+                                        <input type="number" class="form-control" id="x-treshold1" style="width: 60%;" min="0" step="0.01">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Y Treshold</label>
-                                        <input type="number" class="form-control" id="y-treshold" style="width: 60%;" min="0" step="0.01">
+                                        <input type="number" class="form-control" id="y-treshold1" style="width: 60%;" min="0" step="0.01">
                                     </div>
                                 </div>
-                                <button id="deseq_plot" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
+                                <button id="deseq_plot1" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
                             </form>
                         </div>
                      </div>
@@ -870,8 +842,300 @@
         </div>
       </div>
     </div>
-
 </div>
+
+    <!--DSEQ-MODAL-Second-Map-->
+    <div class="modal fade" id="deseqModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel2">Deseq</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="deseq">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav2" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav2">
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a id="href-instructions2" class="nav-link">Instructions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="href-parameters2" class="nav-link">Parameters</a>
+                            </li>
+                          </ul>
+                        </div>
+                    </nav>
+                    <div id="deseq_instructions2" class="Deseq_analysis">
+                        <p>
+                            <br>
+                            To perform Deseq analysis, you must upload relevent conditions file.<br>
+                            The file must be csv type that contains a column named 'id' that contains identifiers for each row.<br>
+                            The Deseq analysis will be performed on data uploaded to the relevant heat map.<br>
+                            The data must contains a column named 'id' that contains identifiers for each row.<br>
+                            Important for Deseq analysis the data must contains count values (Integers),<br>
+                            The the number of columns in the count data file (not include id column),<br>
+                             must be the same as the number of rows in the conditions file (not include header).<br>
+                            For Example:<br>
+                            <span style="font-weight:bold;">Count matrix :</span> <br>
+                            <img src="./resources/count_matrix_example.JPG"><br>
+                            <br>
+                            <span style="font-weight:bold;">Design Matrix:</span> <br>
+                            <br>
+                            <img src="./resources/design_matrix_example.JPG">
+                        </p>
+                    </div>
+                    <div  id="deseq_parameters2" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-10 ">   
+                                <form id="dseqForm2" style="margin-top: 2rem;"> 
+                                    <h3>Upload Files</h3>
+                                    <br>
+                                    <div class="form-group row">
+                                        <br>
+                                        <div id="er2" class="col-sm-6">
+                                            <label>Load Condition Matrix File</label>
+                                            <input type="file" id="design_matrix_input2" class="form-control" style="width:60%" />
+                                        </div>
+                                    </div>
+                                    <input id="dseq_files2" type="submit" class="btn btn-info" value="Upload data">
+                                </form>
+                                <hr class="my-4">  
+                                <form id="dseqAnalysForm2" style="margin-top: 2rem;"> 
+                                    <h3>Run Analysis</h3>
+                                        <br>
+                                    <input id="dseq_analysys2" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
+                                    <div id="spinner-analysis2" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                                    <button id="dseq_analysys-download2" type="submit" class="btn btn-success" hidden>Download Analysis</button>
+                                </form>
+                                <hr class="my-4">    
+                                <form id="dseqPlotForm2" style="margin-top: 2rem;">
+                                    <h3>Plot Deseq</h3>
+                                    <br> 
+                                    <div class="form-group row">
+                                        <br>
+                                        <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6" id="user-analysis-input2" hidden>
+                                                <label>Load Analysis Result</label>
+                                                <input type="file" class="form-control" id="dseq-anlysis-input2" style= "width:60%" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <label>X Column</label>
+                                                <select class="form-control" id="x-column-select2" style="width:80%">
+                                                    <option>baseMean</option>
+                                                    <option>log2FoldChange</option>
+                                                    <option>lfcSE</option>
+                                                    <option>stat</option>
+                                                    <option>pvalue</option>
+                                                    <option>padj</option>
+                                                </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Y Column</label>
+                                            <select class="form-control" id="y-column-select2" style="width:80%">
+                                                <option>baseMean</option>
+                                                <option>log2FoldChange</option>
+                                                <option>lfcSE</option>
+                                                <option>stat</option>
+                                                <option>pvalue</option>
+                                                <option>padj</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label>X Column Operation</label>
+                                                <select class="form-control" id="x-operation-select2" style="width:80%">
+                                                    <option>None</option>
+                                                    <option>Log</option>
+                                                </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Y Column Operation</label>
+                                            <select class="form-control" id="y-operation-select2" style="width:80%">
+                                                <option>None</option>
+                                                <option>Log</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label>X Treshold</label>
+                                            <input type="number" class="form-control" id="x-treshold2" style="width: 60%;" min="0" step="0.01">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Y Treshold</label>
+                                            <input type="number" class="form-control" id="y-treshold2" style="width: 60%;" min="0" step="0.01">
+                                        </div>
+                                    </div>
+                                    <button id="deseq_plot2" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
+                                </form>
+                            </div>
+                         </div>
+                    </div>
+                </div>	
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- DSEQ-Modal-Third-Map -->
+
+<div class="modal fade" id="deseqModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">Deseq</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="deseq">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav3" aria-controls="navbarNav3" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav3">
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a id="href-instructions3" class="nav-link">Instructions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="href-parameters3" class="nav-link">Parameters</a>
+                        </li>
+                      </ul>
+                    </div>
+                </nav>
+                <div id="deseq_instructions3" class="Deseq_analysis">
+                    <p>
+                        <br>
+                        To perform Deseq analysis, you must upload relevent conditions file.<br>
+                        The file must be csv type that contains a column named 'id' that contains identifiers for each row.<br>
+                        The Deseq analysis will be performed on data uploaded to the relevant heat map.<br>
+                        The data must contains a column named 'id' that contains identifiers for each row.<br>
+                        Important for Deseq analysis the data must contains count values (Integers),<br>
+                        The the number of columns in the count data file (not include id column),<br>
+                         must be the same as the number of rows in the conditions file (not include header).<br>
+                        For Example:<br>
+                        <span style="font-weight:bold;">Count matrix :</span> <br>
+                        <img src="./resources/count_matrix_example.JPG"><br>
+                        <br>
+                        <span style="font-weight:bold;">Design Matrix:</span> <br>
+                        <br>
+                        <img src="./resources/design_matrix_example.JPG">
+                    </p>
+                </div>
+                <div  id="deseq_parameters3" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-10 ">   
+                            <form id="dseqForm3" style="margin-top: 2rem;"> 
+                                <h3>Upload Files</h3>
+                                <br>
+                                <div class="form-group row">
+                                    <br>
+                                    <div id="er3" class="col-sm-6">
+                                        <label>Load Condition Matrix File</label>
+                                        <input type="file" id="design_matrix_input3" class="form-control" style="width:60%" />
+                                    </div>
+                                </div>
+                                <input id="dseq_files3" type="submit" class="btn btn-info" value="Upload data">
+                            </form>
+                            <hr class="my-4">  
+                            <form id="dseqAnalysForm3" style="margin-top: 2rem;"> 
+                                <h3>Run Analysis</h3>
+                                    <br>
+                                <input id="dseq_analysys3" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
+                                <div id="spinner-analysis3" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                                <button id="dseq_analysys-download3" type="submit" class="btn btn-success" hidden>Download Analysis</button>
+                            </form>
+                            <hr class="my-4">    
+                            <form id="dseqPlotForm3" style="margin-top: 2rem;">
+                                <h3>Plot Deseq</h3>
+                                <br> 
+                                <div class="form-group row">
+                                    <br>
+                                    <i><strong>*</strong>If you choose run analysis with existing file, please note that you need to run Run Analysis above</i>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6" id="user-analysis-input3" hidden>
+                                            <label>Load Analysis Result</label>
+                                            <input type="file" class="form-control" id="dseq-anlysis-input3" style= "width:60%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <label>X Column</label>
+                                            <select class="form-control" id="x-column-select3" style="width:80%">
+                                                <option>baseMean</option>
+                                                <option>log2FoldChange</option>
+                                                <option>lfcSE</option>
+                                                <option>stat</option>
+                                                <option>pvalue</option>
+                                                <option>padj</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Column</label>
+                                        <select class="form-control" id="y-column-select3" style="width:80%">
+                                            <option>baseMean</option>
+                                            <option>log2FoldChange</option>
+                                            <option>lfcSE</option>
+                                            <option>stat</option>
+                                            <option>pvalue</option>
+                                            <option>padj</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>X Column Operation</label>
+                                            <select class="form-control" id="x-operation-select3" style="width:80%">
+                                                <option>None</option>
+                                                <option>Log</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Column Operation</label>
+                                        <select class="form-control" id="y-operation-select3" style="width:80%">
+                                            <option>None</option>
+                                            <option>Log</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>X Treshold</label>
+                                        <input type="number" class="form-control" id="x-treshold3" style="width: 60%;" min="0" step="0.01">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Y Treshold</label>
+                                        <input type="number" class="form-control" id="y-treshold3" style="width: 60%;" min="0" step="0.01">
+                                    </div>
+                                </div>
+                                <button id="deseq_plot3" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
+                            </form>
+                        </div>
+                     </div>
+                </div>
+            </div>	
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
     </body>
     <script type="text/javascript" src="./components/insertable.js"></script>
     <script type="text/javascript" src="./components/uplaodfiles.js"></script>

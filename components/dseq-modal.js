@@ -2,13 +2,20 @@ const axios = require('axios')
 const plotly = require ("plotly.js-dist");
 const { Parser } = require('json2csv');
 const {API_URL} = require('./index')
-const {drawmap} = require('./drawmap')
+const {drawmap} = require('./drawmap');
+const { validate, existingValidation } = require('./forms');
 
 var hiddenInput=true;
 var heatMapNumber;
 
-document.getElementById('href-instructions').addEventListener('click', navgiateToInstructions);
-document.getElementById('href-parameters').addEventListener('click', navgiateToParameters);
+document.getElementById('href-instructions1').addEventListener('click', navgiateToInstructions);
+document.getElementById('href-parameters1').addEventListener('click', navgiateToParameters);
+
+document.getElementById('href-instructions2').addEventListener('click', navgiateToInstructions);
+document.getElementById('href-parameters2').addEventListener('click', navgiateToParameters);
+
+document.getElementById('href-instructions3').addEventListener('click', navgiateToInstructions);
+document.getElementById('href-parameters3').addEventListener('click', navgiateToParameters);
 
 document.getElementById("deseq-button1").addEventListener('click',()=>{
   heatMapNumber=1
@@ -19,21 +26,45 @@ document.getElementById("deseq-button2").addEventListener('click',()=>{
 })
 
 //For one heatmap
-document.getElementById("deseq-button").addEventListener('click',()=>{
+document.getElementById("deseq-button3").addEventListener('click',()=>{
   heatMapNumber=3
 })
 
 
-document.getElementById('dseq_files').addEventListener('click', function(e) { 
+document.getElementById('dseq_files1').addEventListener('click', function(e) { 
+    uploadDeseqFiles(e)},false);
+    
+document.getElementById('dseq_files2').addEventListener('click', function(e) { 
+  uploadDeseqFiles(e)},false);
+
+  document.getElementById('dseq_files3').addEventListener('click', function(e) { 
     uploadDeseqFiles(e)},false);
 
-document.getElementById('dseq_analysys').addEventListener('click',function(e) {
+document.getElementById('dseq_analysys1').addEventListener('click',function(e) {
     runAnalysis(e)},false);
 
-document.getElementById('dseq_analysys-download').addEventListener('click',function(e) {
+document.getElementById('dseq_analysys2').addEventListener('click',function(e) {
+    runAnalysis(e)},false);
+
+document.getElementById('dseq_analysys3').addEventListener('click',function(e) {
+    runAnalysis(e)},false);
+
+document.getElementById('dseq_analysys-download1').addEventListener('click',function(e) {
     download_deseq_result(e)},false);
 
-document.getElementById('deseq_plot').addEventListener('click',function(e) {
+document.getElementById('dseq_analysys-download2').addEventListener('click',function(e) {
+    download_deseq_result(e)},false);
+
+document.getElementById('dseq_analysys-download3').addEventListener('click',function(e) {
+    download_deseq_result(e)},false);
+
+document.getElementById('deseq_plot1').addEventListener('click',function(e) {
+    plotDseq(e)},false);
+
+document.getElementById('deseq_plot2').addEventListener('click',function(e) {
+    plotDseq(e)},false);
+  
+document.getElementById('deseq_plot3').addEventListener('click',function(e) {
     plotDseq(e)},false);
 
 // filtering Heatmaps 
@@ -43,7 +74,7 @@ document.getElementById('filter-map1').addEventListener('click', function(e) {
 document.getElementById('filter-map2').addEventListener('click', function(e) { 
   filter_heatmaps(e,'2')},false);
 
-document.getElementById('filter-map').addEventListener('click', function(e) { 
+document.getElementById('filter-map3').addEventListener('click', function(e) { 
   filter_heatmaps(e,'3')},false);
   
 
@@ -75,7 +106,7 @@ function filter_heatmaps(e,side){
       var para = document.createElement("p");            
           para.innerText = error_message;
           para.style.color="red"
-          document.getElementById("dseqAnalysForm").appendChild(para);
+          document.getElementById("dseqAnalysForm"+heatMapNumber).appendChild(para);
           setTimeout(() => {
               para.remove();
           },6000)
@@ -86,13 +117,13 @@ function filter_heatmaps(e,side){
 
     
 function navgiateToInstructions(){
-    document.getElementById("deseq_instructions").style.display="block";
-    document.getElementById("deseq_parameters").style.display="none";
+    document.getElementById("deseq_instructions"+heatMapNumber).style.display="block";
+    document.getElementById("deseq_parameters"+heatMapNumber).style.display="none";
 }
 
 function navgiateToParameters(){
-    document.getElementById("deseq_instructions").style.display="none";
-    document.getElementById("deseq_parameters").style.display="block";
+    document.getElementById("deseq_instructions"+heatMapNumber).style.display="none";
+    document.getElementById("deseq_parameters"+heatMapNumber).style.display="block";
 }
 
 function check_file_type(file_name){
@@ -107,12 +138,12 @@ function uploadDeseqFiles(e){
         $('#green').remove();
         files =["design_matrix_input"]
         let formData = new FormData();
-        let design_file= document.getElementById("design_matrix_input").files[0]
+        let design_file= document.getElementById("design_matrix_input"+heatMapNumber).files[0]
         if (check_file_type(design_file.name) == false){
           var para = document.createElement("p");          
             para.innerText = "file type must be csv";
             para.style.color="red"
-            document.getElementById("dseqForm").appendChild(para);
+            document.getElementById("dseqForm"+heatMapNumber).appendChild(para);
             setTimeout(() => {
                 para.remove();
             },6000)
@@ -127,8 +158,8 @@ function uploadDeseqFiles(e){
             }
             }).then((response) => {
                 imagePath = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
-                $('#dseqForm').append(`<img id="green" src=${imagePath} style="width:25px;"></img>`); 
-                $( "#dseq_analysys" ).prop( "disabled", false );
+                $('#dseqForm'+heatMapNumber).append(`<img id="green" src=${imagePath} style="width:25px;"></img>`); 
+                $( "#dseq_analysys"+heatMapNumber ).prop( "disabled", false );
           })
           .catch(error => {
             initAnaylsysValues()
@@ -136,7 +167,7 @@ function uploadDeseqFiles(e){
             var para = document.createElement("p");          
             para.innerText = error_message;
             para.style.color="red"
-            document.getElementById("dseqForm").appendChild(para);
+            document.getElementById("dseqForm"+heatMapNumber).appendChild(para);
             setTimeout(() => {
                 para.remove();
             },6000)
@@ -152,9 +183,9 @@ function addValues(valuesArray,selectElem){
 
 function runAnalysis(e){
 
-  $('#green2').remove();
-  $('#spinner-analysis').attr('hidden',false);
-  $("#dseq_analysys-download").attr('hidden',true);
+  $('#green2'+heatMapNumber).remove();
+  $('#spinner-analysis'+heatMapNumber).attr('hidden',false);
+  $("#dseq_analysys-download"+heatMapNumber).attr('hidden',true);
     let formData = new FormData();
     e.preventDefault();
     formData.append("side",heatMapNumber);
@@ -164,20 +195,20 @@ function runAnalysis(e){
           "Access-Control-Allow-Origin": "*"
         }
         }).then((response) => {
-          $('#spinner-analysis').attr('hidden',true);
+          $('#spinner-analysis'+heatMapNumber).attr('hidden',true);
           imagePath2 = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
-          $('#dseqAnalysForm').append(`<img id="green2" src=${imagePath2} style="width:25px;"></img>`); 
-          $("#dseq_analysys").prop("disabled",false)
-          $("#dseq_analysys-download").attr('hidden',false);
-          $("#dseq_plot").prop( "disabled", false )
+          $('#dseqAnalysForm'+heatMapNumber).append(`<img id="green2" src=${imagePath2} style="width:25px;"></img>`); 
+          $("#dseq_analysys"+heatMapNumber).prop("disabled",false)
+          $("#dseq_analysys-download"+heatMapNumber).attr('hidden',false);
+          $("#dseq_plot"+heatMapNumber).prop( "disabled", false )
       })
       .catch(error => {
-        $('#spinner-analysis').attr('hidden',true);
+        $('#spinner-analysis'+heatMapNumber).attr('hidden',true);
         let error_message = error.response.data.message;
         var para = document.createElement("p");            
             para.innerText = error_message;
             para.style.color="red"
-            document.getElementById("dseqAnalysForm").appendChild(para);
+            document.getElementById("dseqAnalysForm"+heatMapNumber).appendChild(para);
             setTimeout(() => {
                 para.remove();
             },6000)
@@ -210,7 +241,7 @@ function download_deseq_result(e){
         var para = document.createElement("p");            
             para.innerText = error_message;
             para.style.color="red"
-            document.getElementById("dseqAnalysForm").appendChild(para);
+            document.getElementById("dseqAnalysForm"+heatMapNumber).appendChild(para);
             setTimeout(() => {
                 para.remove();
             },6000)
@@ -226,16 +257,21 @@ function json2csv(data){
 
 function plotDseq(e){
     e.preventDefault();
+    if(dseqValidation()){
+        setErrorMessage("Please fill all required inputs")
+        return;
+    }
+
     let formData = new FormData();
     if(!hiddenInput){
-        formData.append('files', document.getElementById("dseq-anlysis-input").files[0]);
+        formData.append('files', document.getElementById("dseq-anlysis-input"+heatMapNumber).files[0]);
     }
-    x_column = document.getElementById("x-column-select").value
-    x_operation= document.getElementById("x-operation-select").value
-    x_treshold= document.getElementById("x-treshold").value
-    y_column = document.getElementById("y-column-select").value
-    y_operation= document.getElementById("y-operation-select").value
-    y_treshold = document.getElementById('y-treshold').value
+    x_column = document.getElementById("x-column-select"+heatMapNumber).value
+    x_operation= document.getElementById("x-operation-select"+heatMapNumber).value
+    x_treshold= document.getElementById("x-treshold"+heatMapNumber).value
+    y_column = document.getElementById("y-column-select"+heatMapNumber).value
+    y_operation= document.getElementById("y-operation-select"+heatMapNumber).value
+    y_treshold = document.getElementById('y-treshold'+heatMapNumber).value
   
 
     formData.append("x_column",x_column);
@@ -253,26 +289,20 @@ function plotDseq(e){
         }
         }).then((response) => {
           create_volcano_plot(response.data,heatMapNumber);
-          $('#deseqModal').modal('toggle');
+          $('#deseqModal'+heatMapNumber).modal('toggle');
       })
       .catch(error => {
-        let error_message = error.response.data.message;
-        var para = document.createElement("p");            
-        para.innerText = error_message;
-        para.style.color="red"
-        document.getElementById("dseqPlotForm").appendChild(para);
-        setTimeout(() => {
-            para.remove();
-        },6000)
+        let error_message = error.response.data.message;            
+        setErrorMessage(error_message)
       })
     }
 
 function initAnaylsysValues(){
     $('#green2').remove();
-    $("#dseq_analysys").prop("disabled",true)
-    $("#dseq_analysys-download").attr('hidden',true);
-    $("#count-matrix-select option").remove();
-    $("#design-matrix-select option").remove();
+    $("#dseq_analysys"+heatMapNumber).prop("disabled",true)
+    $("#dseq_analysys-download"+heatMapNumber).attr('hidden',true);
+    $("#count-matrix-select"+heatMapNumber +" option").remove();
+    $("#design-matrix-select1"+heatMapNumber + " option").remove();
 }
 
 function create_volcano_plot(plot,side){
@@ -288,6 +318,7 @@ function create_volcano_plot(plot,side){
     filter=  "#filter-third-dseq";
   }
   let vp_data = plot['data'];
+  console.log(vp_data)
   let vp_layout = plot['layout'];
   plotly.newPlot(id,vp_data,vp_layout)
   $(filter).show()
@@ -307,4 +338,34 @@ function createFilterValues(){
 
       return res;
 
+}
+
+function dseqValidation(){
+  let x_trsh_value = document.getElementById("x-treshold"+heatMapNumber);
+  let y_trsh_value = document.getElementById("y-treshold"+heatMapNumber);
+  if(!x_trsh_value.value){
+    x_trsh_value.style.borderColor = "red";
+    setTimeout(() => {
+      x_trsh_value.style.borderColor = "gray";
+   },6000)
+   return true;
+  }
+  if(!y_trsh_value.value){
+    y_trsh_value.style.borderColor = "red";
+    setTimeout(() => {
+    y_trsh_value.style.borderColor = "gray";
+   },6000)
+   
+  }
+   
+}
+
+function setErrorMessage(msg){
+  var para = document.createElement("p");
+  para.innerText = msg;
+  para.style.color="red"
+  document.getElementById("dseqPlotForm"+heatMapNumber).appendChild(para);
+  setTimeout(() => {
+     para.remove();
+  },6000)
 }

@@ -52,7 +52,9 @@ function uplaodSavedSettings(){
             localStorage.setItem("map2",response.data.second)
             drawmap2(response.data.second,"inchlib2");
             $('#one_maps_show').hide()
+            $('#bt3').hide()
             $('#two_maps_show').show()
+            $('#bt3').show()
             $('#buttons').show()
             var first_second_connections= response.data.first_second_connections;
             localStorage.setItem('first_second_connections',JSON.stringify(first_second_connections))
