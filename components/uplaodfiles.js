@@ -118,6 +118,8 @@ function uploadOneHeatMap(){
   properties['compress1']=0
   properties['norm_type1'] = 'Z-Score'
   properties['base1'] = '0'
+  properties["deseq_normalization1"] = document.getElementById("dseq-normalization1").checked;
+
 
  
   if(document.getElementById("miRNA-clust-select").value == "Both"){
@@ -134,7 +136,7 @@ function uploadOneHeatMap(){
   if(document.getElementById("normalization-first-select").value === "LogP1")
   {
     properties['norm_type1'] = 'Log'
-    properties['base1'] = document.getElementById("normalization-base1").value
+    properties['base1'] = document.getElementById("normalization-base-value-first").value
   }
 
   formData.append("files", JSON.stringify(properties));
@@ -250,7 +252,7 @@ function upload2HeatMaps(){
   if(document.getElementById("normalization-second-select").value === "LogP1")
   {
     properties['norm_type2'] = 'Log'
-    properties['base2'] = document.getElementById("normaliztion-base-value-second").value
+    properties['base2'] = document.getElementById("normalization-base-value-second").value
   }
 
 

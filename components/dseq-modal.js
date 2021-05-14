@@ -80,7 +80,7 @@ document.getElementById('filter-map3').addEventListener('click', function(e) {
 
 function filter_heatmaps(e,side){
   e.preventDefault();
-
+  heatMapNumber = side;
   values = createFilterValues()
 
 
