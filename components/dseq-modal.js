@@ -257,10 +257,6 @@ function json2csv(data){
 
 function plotDseq(e){
     e.preventDefault();
-    if(dseqValidation()){
-        setErrorMessage("Please fill all required inputs")
-        return;
-    }
 
     let formData = new FormData();
     if(!hiddenInput){
@@ -340,25 +336,6 @@ function createFilterValues(){
 
 }
 
-function dseqValidation(){
-  let x_trsh_value = document.getElementById("x-treshold"+heatMapNumber);
-  let y_trsh_value = document.getElementById("y-treshold"+heatMapNumber);
-  if(!x_trsh_value.value){
-    x_trsh_value.style.borderColor = "red";
-    setTimeout(() => {
-      x_trsh_value.style.borderColor = "gray";
-   },6000)
-   return true;
-  }
-  if(!y_trsh_value.value){
-    y_trsh_value.style.borderColor = "red";
-    setTimeout(() => {
-    y_trsh_value.style.borderColor = "gray";
-   },6000)
-   
-  }
-   
-}
 
 function setErrorMessage(msg){
   var para = document.createElement("p");
