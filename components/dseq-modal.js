@@ -257,6 +257,7 @@ function json2csv(data){
 
 function plotDseq(e){
     e.preventDefault();
+    $('#spinner-plot'+heatMapNumber).attr('hidden',false);
 
     let formData = new FormData();
     if(!hiddenInput){
@@ -285,9 +286,11 @@ function plotDseq(e){
         }
         }).then((response) => {
           create_volcano_plot(response.data,heatMapNumber);
+          $('#spinner-plot'+heatMapNumber).attr('hidden',true);
           $('#deseqModal'+heatMapNumber).modal('toggle');
       })
       .catch(error => {
+        $('#spinner-plot'+heatMapNumber).attr('hidden',true);
         let error_message = error.response.data.message;            
         setErrorMessage(error_message)
       })
@@ -315,6 +318,7 @@ function create_volcano_plot(plot,side){
   }
   let vp_data = plot['data'];
   console.log(vp_data)
+  setCheckBoxes(vp_data);
   let vp_layout = plot['layout'];
   plotly.newPlot(id,vp_data,vp_layout)
   $(filter).show()
@@ -338,6 +342,9 @@ function createFilterValues(){
 
 
 function setErrorMessage(msg){
+  if(msg.includes("Missing")){
+    msg="Anaylsys result missing. Please Run Analysis first."
+  }
   var para = document.createElement("p");
   para.innerText = msg;
   para.style.color="red"
@@ -345,4 +352,22 @@ function setErrorMessage(msg){
   setTimeout(() => {
      para.remove();
   },6000)
+}
+
+function setCheckBoxes(vp_data){
+  vp_data.forEach(element => {
+    console.log("color:" + element.legendgroup)
+    if(element.legendgroup === "High"){
+      $("#high-checkbox"+heatMapNumber).show()
+    }
+    if(element.legendgroup === "Normal"){
+      $("#normal-checkbox"+heatMapNumber).show()
+    }
+    if(element.legendgroup === "Low"){
+      $("#low-checkbox"+heatMapNumber).show()
+    }
+  });
+
+  
+    
 }

@@ -160,11 +160,7 @@ function uploadOneHeatMap(){
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $("#home-page").hide()
     }, (error) => {
-      document.getElementById("spinner").style.display="none";
-          let errormessage = error.response.data['detail']
-          $('#error-message').html(errormessage);
-          $('#error-message').addClass("error-m");
-          setTimeout(() => $("#error-message").html("&nbsp;"),6000)
+      setErrorMessage(error.response.data.message);
     });
 }
 
@@ -280,15 +276,12 @@ function upload2HeatMaps(){
       localStorage.setItem('first_second_connections',JSON.stringify(first_second_connections))
 
       var second_first_connections= response.data.second_first_connections;
+
       localStorage.setItem('second_first_connections',JSON.stringify(second_first_connections))
       $("#home-page").hide()
       $('html, body').animate({ scrollTop: 0 }, 'fast');
       }, (error) => {
-          document.getElementById("spinner").style.display="none";
-          let errormessage = error.response.data['detail']
-          $('#error-message').html(errormessage);
-          $('#error-message').addClass("error-m");
-          setTimeout(() => $("#error-message").html("&nbsp;"),6000)
+          setErrorMessage(error.response.data.message);
       });
 }
 
@@ -309,4 +302,12 @@ else{
   }
 }
 return properties
+}
+
+function setErrorMessage(msg){
+  document.getElementById("spinner").style.display="none";
+          let errormessage = msg
+          $('#error-message').html(errormessage);
+          $('#error-message').addClass("error-m");
+          setTimeout(() => $("#error-message").html("&nbsp;"),6000)
 }

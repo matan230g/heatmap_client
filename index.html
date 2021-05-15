@@ -68,26 +68,26 @@
                     <div  id='inchlib1' ></div>
                     <div id='plot1'></div>
                     <div class="hidden" id='filter-first-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
-                        <div class="form-check">
+                        <div class="form-check hidden" id="high-checkbox1" style="display: none;">
                             <input class="form-check-input" type="checkbox" value="" id="high1" checked>
                             <label class="form-check-label" for="flexCheckDefault">
                             Filter by Higher color
                             </label>
                           </div>
-                          <div class="form-check">
+                          <div class="form-check" id="low-checkbox1" style="display: none;">
                             <input class="form-check-input" type="checkbox" value="" id="low1" >
                             <label class="form-check-label" for="flexCheckChecked">
                             Filter by Lower color
                             </label>
                           </div>
-                          <div class="form-check">
+                          <div class="form-check hidden" id="normal-checkbox1" style="display: none;">
                             <input class="form-check-input" type="checkbox" value="" id="normal1" >
                             <label class="form-check-label" for="flexCheckChecked">
                             Filter by Normal color
                             </label>
                           </div>
                             <br> 
-                            <button id="filter-map1" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                            <button id="filter-map1 hidden" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
                             <div id="spinner-map1" class="spinner-border text-muted" hidden style="margin-left:35px;"></div> 
                     </div>
                 
@@ -123,19 +123,19 @@
                     <div  id='inchlib2' ></div>
                     <div id='plot2'></div>
                     <div class="hidden" id='filter-second-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
-                        <div class="form-check">
+                        <div class="form-check hidden" id="high-checkbox2" >
                             <input class="form-check-input" type="checkbox" value="" id="high2" checked>
                             <label class="form-check-label" for="flexCheckDefault">
                             Filter by Higher color
                             </label>
                           </div>
-                          <div class="form-check">
+                          <div class="form-check hidden" id="low-checkbox2">
                             <input class="form-check-input" type="checkbox" value="" id="low2" >
                             <label class="form-check-label" for="flexCheckChecked">
                             Filter by Lower color
                             </label>
                           </div>
-                          <div class="form-check">
+                          <div class="form-check hidden" id="normal-checkbox2">
                             <input class="form-check-input" type="checkbox" value="" id="normal2" >
                             <label class="form-check-label" for="flexCheckChecked">
                             Filter by Normal color
@@ -161,26 +161,26 @@
           <div id='plot'></div>
         </div>
         <div class="hidden" id='filter-third-dseq' style="width: 30%; margin:auto; margin-bottom:3rem;">
-            <div class="form-check">
+            <div class="form-check" id="high-checkbox3" style="display: none;">
                 <input class="form-check-input" type="checkbox" value="" id="high3" checked>
                 <label class="form-check-label" for="flexCheckDefault">
                 Filter by Higher color
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check " id="low-checkbox3" style="display: none;">
                 <input class="form-check-input" type="checkbox" value="" id="low3" >
                 <label class="form-check-label" for="flexCheckChecked">
                 Filter by Lower color
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check " id="normal-checkbox3" style="display: none;">
                 <input class="form-check-input" type="checkbox" value="" id="normal3" >
                 <label class="form-check-label" for="flexCheckChecked">
                 Filter by Normal color
                 </label>
               </div>
                 <br> 
-                <button id="filter-map3" type="button" class="btn btn-secondary btn-sm" style="width: 60%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
+                <button id="filter-map3" type="button" class="btn btn-secondary btn-sm" style="width: 30%; margin:auto; margin-bottom:3rem;"  data-toggle="tooltip" data-placement="top" title="Filter your heatmap with Deseq analysis results" ><i class="fas fa-filter"></i> Filter heatmap</button>
                 <div id="spinner-map3" class="spinner-border text-muted" hidden style="margin-left:35px;"></div>
         </div>
         </div>
@@ -830,6 +830,7 @@
                                         <input type="number" class="form-control" id="y-treshold1" style="width: 60%;" min="0" step="0.01" value="1">
                                     </div>
                                 </div>
+                                <div id="spinner-plot1" hidden class="spinner-border text-muted" style="margin-top:15px; display: flex;"></div>
                                 <button id="deseq_plot1" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
                             </form>
                         </div>
@@ -910,7 +911,7 @@
                                     <h3>Run Analysis</h3>
                                         <br>
                                     <input id="dseq_analysys2" type="submit" class="btn btn-info" value="Run Analysis" disabled="true">
-                                    <div id="spinner-analysis2" hidden class="spinner-border text-muted" style="margin-left:35px; display: flex;"></div>
+                                    <div id="spinner-analysis2" hidden class="spinner-border text-muted" style="margin-top:35px; display: flex;"></div>
                                     <button id="dseq_analysys-download2" type="submit" class="btn btn-success" hidden>Download Analysis</button>
                                 </form>
                                 <hr class="my-4">    
@@ -975,6 +976,7 @@
                                             <input type="number" class="form-control" id="y-treshold2" style="width: 60%;" min="0" step="0.01" value="1">
                                         </div>
                                     </div>
+                                    <div id="spinner-plot2" hidden class="spinner-border text-muted" style="margin-top:15px; display: flex;"></div>
                                     <button id="deseq_plot2" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
                                 </form>
                             </div>
@@ -1121,6 +1123,7 @@
                                         <input type="number" class="form-control" id="y-treshold3" style="width: 60%;" min="0" step="0.01" value="1">
                                     </div>
                                 </div>
+                                <div id="spinner-plot3" hidden class="spinner-border text-muted" style="margin-top:15px; display: flex;"></div>
                                 <button id="deseq_plot3" type="submit" class="btn btn-info" value="Plot" >Plot Deseq</button>
                             </form>
                         </div>
