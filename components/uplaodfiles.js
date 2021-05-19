@@ -148,10 +148,10 @@ function uploadOneHeatMap(){
       }
       }).then((response) => {
         cleanConnectionTables();
-        localStorage.setItem("map1",response.data)
-        if(localStorage.getItem("map2")){
-          localStorage.removeItem("map2")
-        }
+        // localStorage.setItem("map1",response.data)
+        // if(localStorage.getItem("map2")){
+        //   localStorage.removeItem("map2")
+        // }
         drawmap(response.data,"inchlib")
         $('#one_maps_show').show()
         $('#bt3').show()
@@ -264,9 +264,10 @@ function upload2HeatMaps(){
     }).then((response) => {
       localStorage.setItem('uuid',response.headers.uuid)
       cleanConnectionTables();
-      localStorage.setItem("map1",response.data.first)
+      // localStorage.setItem("map1",response.data.first)
       drawmap(response.data.first,"inchlib1");
-      localStorage.setItem("map2",response.data.second)
+      console.log(response.data.first);
+      // localStorage.setItem("map2",response.data.second)
       drawmap2(response.data.second,"inchlib2");
       $('#one_maps_show').hide()
       $('#bt3').hide()

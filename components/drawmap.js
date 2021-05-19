@@ -4,11 +4,21 @@ var InCHlib = require("../lib/inchlib-1.2.0");
 //var json2 = require("../resources/target.json")
 // var tet = require("../resources/microarrays.json")
 const {initTable} = require('./insertable')
+const axios = require('axios')
+const {API_URL} = require('./index')
 
 document.getElementById('clear-tb1').addEventListener('click', cleanTableOne )
 document.getElementById('clear-tb2').addEventListener('click', cleanTableTwo )
-document.getElementById('restart1').addEventListener('click',() => resetMap("map1","inchlib1") )
-document.getElementById('restart2').addEventListener('click', () => resetMap("map2","inchlib2") )
+
+document.getElementById('restart1').addEventListener('click', () => {
+    resetMap("map1","inchlib1")
+},false )
+
+// document.getElementById('restart2').addEventListener('click', () => resetMap("map2","inchlib2") )
+
+
+
+
 
 export function drawmap(json,target){
 var inchlib = new InCHlib({"target": target,
@@ -88,9 +98,26 @@ function cleanTableTwo(){
 }
 
 function resetMap(map,target){
+    console.log("blbalab")
     $("#spinner-"+map).show()
-    let mapJson = localStorage.getItem(map)
-    drawmap2(mapJson,target)
-    $("#spinner-"+map).hide()
+    axios.get(API_URL+'actions/reset_default',{
+      params:{'side' :map} ,
+      headers: {
+        'content-Type': 'multipart/form-data',
+        "Access-Control-Allow-Origin": "*"
+      }
+      }).then((response) => {
+        console.log(response.data.heatmap);
+        drawmap(response.data.heatmap,target)
+        $("#spinner-"+map).hide()
+    })
+    .catch(error => {
+      $("#spinner-"+map).hide();
+      let error_message = error.response.data.message;
+      var para = document.createElement("p");            
+          para.innerText = error_message;
+          para.style.color="red"
+    })
+
 
 }
