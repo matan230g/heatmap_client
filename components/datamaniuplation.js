@@ -100,20 +100,16 @@ function sendToServer(properties){
     }, (error) => {
       errormessage = error.response.data['detail']
       if(map=="inchlib2"){
-        console.log('errormessage',errormessage)
-        alert(`Map creation failed, too little data after ${properties['action']}`)
         $("#inchlib2").show()
         $("spinner-map2").show()
-        // $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#bt1" );
-        // setTimeout(() => $("#action_error").remove(),3000)
+        $( `<p style="color:red" id="action_error">Map creation failed, data missing for ${properties['action']}</p>` ).insertAfter( "#bt1" );
+        setTimeout(() => $("#action_error").remove(),3000)
       }
       else{
-        console.log('errormessage',errormessage)
-        alert(`Map creation failed, too little data after ${properties['action']}`)
         $("#inchlib1").show()
         $("spinner-map1").show()
-        // $( `<p style="color:red" id="action_error">${errormessage}</p>` ).insertAfter( "#bt2" );
-        // setTimeout(() => $("#action_error").remove(),3000)
+        $( `<p style="color:red" id="action_error">Map creation failed, data missing for ${properties['action']}</p>` ).insertAfter( "#bt2" );
+        setTimeout(() => $("#action_error").remove(),3000)
       }
     });
 

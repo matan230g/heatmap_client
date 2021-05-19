@@ -10,9 +10,16 @@ const {API_URL} = require('./index')
 document.getElementById('clear-tb1').addEventListener('click', cleanTableOne )
 document.getElementById('clear-tb2').addEventListener('click', cleanTableTwo )
 
-document.getElementById('restart1').addEventListener('click', () => {
+
+$('#restart1').off('click').on('click',function() {
     resetMap("map1","inchlib1")
-},false )
+  });
+
+  $('#restart2').off('click').on('click',function() {
+    resetMap("map2","inchlib2")
+  });
+  
+ // document.getElementById('restart1btn').addEventListener('click', () => resetMap1("map1","inchlib") )
 
 // document.getElementById('restart2').addEventListener('click', () => resetMap("map2","inchlib2") )
 
@@ -23,7 +30,6 @@ document.getElementById('restart1').addEventListener('click', () => {
 export function drawmap(json,target){
 var inchlib = new InCHlib({"target": target,
                     "width": 800,
-                    "height": 1200,
                     "column_metadata_colors": "RdLrBu",
                     "heatmap_colors": "RdBkGr",
                     "max_percentile": 90,
@@ -98,17 +104,16 @@ function cleanTableTwo(){
 }
 
 function resetMap(map,target){
-    console.log("blbalab")
     $("#spinner-"+map).show()
     axios.get(API_URL+'actions/reset_default',{
       params:{'side' :map} ,
       headers: {
         'content-Type': 'multipart/form-data',
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "uuid":localStorage.getItem('uuid')
       }
       }).then((response) => {
-        console.log(response.data.heatmap);
-        drawmap(response.data.heatmap,target)
+        drawmap(JSON.stringify(response.data.heatmap),target)
         $("#spinner-"+map).hide()
     })
     .catch(error => {

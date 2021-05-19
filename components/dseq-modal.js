@@ -89,7 +89,8 @@ function filter_heatmaps(e,side){
     } ,
       headers: {
         'content-Type': 'multipart/form-data',
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "uuid":localStorage.getItem('uuid')
       }
       }).then((response) => {
         json_data = JSON.parse(response.data['plot']);
@@ -154,7 +155,9 @@ function uploadDeseqFiles(e){
         axios.post(API_URL+'deseq/upload_data', formData, {
             headers: {
               'content-Type': 'multipart/form-data',
-              "Access-Control-Allow-Origin": "*"
+              "Access-Control-Allow-Origin": "*",
+              "uuid":localStorage.getItem('uuid')
+              
             }
             }).then((response) => {
                 imagePath = "https://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Accept-icon.png"
@@ -222,7 +225,8 @@ function download_deseq_result(e){
         params:{'side' :heatMapNumber} ,
         headers: {
           'content-Type': 'multipart/form-data',
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "uuid":localStorage.getItem('uuid')
         }
         }).then((response) => {
           csv_data = json2csv(response.data);
@@ -282,7 +286,8 @@ function plotDseq(e){
     axios.post(API_URL+'deseq/volcano_plot_deseq', formData, {
         headers: {
           'content-Type': 'multipart/form-data',
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "uuid":localStorage.getItem('uuid')
         }
         }).then((response) => {
           create_volcano_plot(response.data,heatMapNumber);
