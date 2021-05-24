@@ -195,7 +195,8 @@ function runAnalysis(e){
     axios.post(API_URL+'deseq/run_deseq', formData, {
         headers: {
           'content-Type': 'multipart/form-data',
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "uuid": localStorage.getItem("uuid")
         }
         }).then((response) => {
           $('#spinner-analysis'+heatMapNumber).attr('hidden',true);
