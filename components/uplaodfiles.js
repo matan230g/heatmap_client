@@ -147,6 +147,7 @@ function uploadOneHeatMap(){
         "Access-Control-Allow-Origin": "*"
       }
       }).then((response) => {
+        localStorage.setItem('uuid',response.headers.uuid)
         cleanConnectionTables();
         // localStorage.setItem("map1",response.data)
         // if(localStorage.getItem("map2")){
