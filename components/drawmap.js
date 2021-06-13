@@ -1,8 +1,6 @@
 
+/* Draw HeatMap  */
 var InCHlib = require("../lib/inchlib-1.2.0");
-//var json1 = require("../resources/microarrays.json")
-//var json2 = require("../resources/target.json")
-// var tet = require("../resources/microarrays.json")
 const {initTable} = require('./insertable')
 const axios = require('axios')
 const {API_URL} = require('./index')
@@ -10,23 +8,22 @@ const {API_URL} = require('./index')
 document.getElementById('clear-tb1').addEventListener('click', cleanTableOne )
 document.getElementById('clear-tb2').addEventListener('click', cleanTableTwo )
 
-
+//restart the heatmap1 
 $('#restart1').off('click').on('click',function() {
     resetMap("map1","inchlib1")
   });
 
-  $('#restart2').off('click').on('click',function() {
+//restart the heatmap2
+$('#restart2').off('click').on('click',function() {
     resetMap("map2","inchlib2")
   });
   
- // document.getElementById('restart1btn').addEventListener('click', () => resetMap1("map1","inchlib") )
-
-// document.getElementById('restart2').addEventListener('click', () => resetMap("map2","inchlib2") )
 
 
 
 
 
+//drawmap using InCHlib library
 export function drawmap(json,target){
 var inchlib = new InCHlib({"target": target,
                     "width": 800,

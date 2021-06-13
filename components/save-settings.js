@@ -1,3 +1,4 @@
+/*Save settings functions   */
 const axios = require('axios')
 var FileSaver = require('file-saver');
 const {cleanConnectionTables} = require('./drawmap')

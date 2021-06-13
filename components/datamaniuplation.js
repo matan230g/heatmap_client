@@ -1,9 +1,9 @@
+/* Data  Maniuplation    */
 const axios = require('axios');
 const { API_URL } = require('.');
 const {drawmapAfterManipulate} = require('./drawmap')
 
 var wichTableWorkOn;
-var clusterManipluate;
 document.getElementById('preprocess1').addEventListener('click',(e) =>{
     wichTableWorkOn="first_second"
 },false)
@@ -33,7 +33,12 @@ document.getElementById('mainuplate-data').addEventListener('click',(e) =>{
 document.getElementById('target-clust-select-manipul').addEventListener('change',changeSelectClusterManipulate)
 
 
-function dataManipulate(){
+/*
+The function orginze the propeties when the using data manipulate on 
+data and send to function sendToServer 
+*/
+
+ function dataManipulate(){
 
     let properties = {}
     let checkIfBoth = document.getElementById('target-clust-select-manipul').value
@@ -48,7 +53,7 @@ function dataManipulate(){
     properties['raw_linkage'] = linkage1
     properties['raw_distance'] = distance1
     
-
+    //clustering on both: rows and columns  
     if(checkIfBoth==='Both'){
         properties['both1'] = 1;
         properties['column_linkage'] = document.getElementById('linkage-select-column-manipulate').value
@@ -57,7 +62,7 @@ function dataManipulate(){
     else{
         properties['both1'] = 0;
     }
-
+    //compress the data
     if(checkIfCompress){
         properties['compress1'] = 1;
         properties['compressed_number'] = document.getElementById('compressed-number-manipulate').value
@@ -71,7 +76,10 @@ function dataManipulate(){
 
     sendToServer(properties)
 }
-
+/*
+The function get  the propeties send api request to the server
+and send the respone to drawmapAfterManipulate function 
+*/
 
 
 function sendToServer(properties){
@@ -99,7 +107,7 @@ function sendToServer(properties){
         drawmapAfterManipulate(response.data,map)
     }, (error) => {
       errormessage = error.response.data['detail']
-      if(map=="inchlib2"){
+      if(map=="inchlib2"){//second map 
         $("#inchlib2").show()
         $("spinner-map2").show()
         $( `<p style="color:red" id="action_error">Map creation failed, data missing for ${properties['action']}</p>` ).insertAfter( "#bt1" );
@@ -115,7 +123,7 @@ function sendToServer(properties){
 
 }
 
-
+//show the user the select propeties for row and column when the user choose clustering both 
 function changeSelectClusterManipulate(event){
 
     if(event.target.value === 'Both'){
@@ -130,6 +138,9 @@ function changeSelectClusterManipulate(event){
 
 }
 
+/*
+The function get all the values of the table of choosed sample
+*/
 
 function getAllValues(tableName){
     let array = []

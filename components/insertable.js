@@ -1,5 +1,5 @@
 
-
+/* function for Table of mir and gene */
 var idSet = new Set()
 export function initTable(table){
     idSet= new Set();

@@ -1,3 +1,5 @@
+/*validation and addEventListener to the form's object */ 
+
 //Choose how much maps display
 document.getElementById('checkbox-maps-choose').addEventListener('click', showHideMapsNum);
 document.getElementById('checkbox-meta-data1').addEventListener('click', showHideMetaData1);
@@ -10,7 +12,8 @@ document.getElementById('choose-compress').addEventListener('click', changeCompr
 document.getElementById('choose-compress2').addEventListener('click', changeCompress2)
 document.getElementById('normalization-first-select').addEventListener('change', showHideLogPBaseFirst)
 document.getElementById("normalization-second-select").addEventListener('change', showHideLogPBaseSecond)
-//document.getElementById("normalization-action-select").addEventListener('change', showHideRangesAction)
+
+
 function showHideMetaData1(){
     const res = document.getElementById("checkbox-meta-data1").checked;
     var settings = document.getElementById("checkbox-mirNA-metadata-option");
@@ -74,7 +77,7 @@ function showHideMapsNum(){
     var connections = document.getElementById("connections")
     var settingssecondheatmap = document.getElementById("secondheatmapssettings");
     document.getElementById("checkbox-meta-data2").checked = false;
-
+    //choose two heatmaps or one heatmaps 
     if(res){
         settingssecondheatmap.style.display="none"
         target_metadata.style.display="none"; 
@@ -88,7 +91,7 @@ function showHideMapsNum(){
 
     }
 }
-
+/* validate the user input in the form */
 export function validate(res){
     var input1 = document.getElementById("mirNA")
     var input2 = document.getElementById("target")
@@ -215,7 +218,7 @@ function changeCompress(event){
     
 }
 
-
+/*compress for the second heatmap */
 function changeCompress2(event){
 
     const res = document.getElementById("choose-compress2").checked;
@@ -240,13 +243,12 @@ function showHideForms(){
     }
 }
 
-
 $('#downoad_map').unbind('click').bind('click',(function(e){
    e.preventDefault();
    downloadObjectAsJson("map")
 }))
 
-
+//download heatmap file as json object 
 function downloadObjectAsJson(wichmap){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(localStorage.getItem(wichmap));
     var downloadAnchorNode = document.createElement('a');

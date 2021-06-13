@@ -74,7 +74,7 @@ function extractData(table,cluster){
 
 }    
 
-
+/*function send api request for union or intersection between the 2 set of data   */
     function callServer(endpoint,cluster){
         console.log("in calllllServer");
 

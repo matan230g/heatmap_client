@@ -1,3 +1,4 @@
+/*DESeq -Differential gene expression analysis based on the negative binomial distribution   */
 const axios = require('axios')
 const plotly = require ("plotly.js-dist");
 const { Parser } = require('json2csv');
@@ -83,7 +84,7 @@ function filter_heatmaps(e,side){
   heatMapNumber = side;
   values = createFilterValues()
 
-
+  //send the data to sever for deseq filter
   axios.get(API_URL+'deseq/filter_heatmap',{
       params:{'side' :side, 'values':values
     } ,
@@ -177,12 +178,6 @@ function uploadDeseqFiles(e){
           })
         }
 
-function addValues(valuesArray,selectElem){
-    valuesArray.sort()
-    for(var i = 0; i<valuesArray.length; i++){
-        selectElem.options[i] = new Option(valuesArray[i],valuesArray[i])
-    }
-}
 
 function runAnalysis(e){
 
@@ -330,6 +325,7 @@ function create_volcano_plot(plot,side){
   $(filter).show()
 }
 
+//filter for the plot 
 function createFilterValues(){
   res=""
   if(document.getElementById('high'+heatMapNumber).checked){
@@ -360,6 +356,7 @@ function setErrorMessage(msg){
   },6000)
 }
 
+//show checkbox 
 function setCheckBoxes(vp_data){
   vp_data.forEach(element => {
     console.log("color:" + element.legendgroup)
