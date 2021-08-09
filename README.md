@@ -12,3 +12,13 @@ The source code of the project can be find here
 - [Client](https://github.com/matan230g/heatmap_client)
 
 - [Server](https://github.com/matan230g/heatmap_client)
+
+**INSTALLATION**
+
+*Client installation:*
+
+* Make sure you have NPM installed.
+* Clone the project from Github
+* run npm install to install all dependecies
+* run npm run dev 
+* Enjoy!
